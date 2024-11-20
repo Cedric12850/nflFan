@@ -23,7 +23,7 @@ class Divisions(models.Model):
 class Teams(models.Model):
     name = models.CharField(max_length=60)
     town = models.CharField(max_length=60)
-    thumbnail = models.ImageField(upload_to="thumbnail/logo", null=True, blank=True)  #si on ne veut pas que l'image soit obligatoire il faut ajoutter dans les param (blank=True, null=True)
+    thumbnail = models.ImageField(upload_to="logo", null=True, blank=True)  #si on ne veut pas que l'image soit obligatoire il faut ajoutter dans les param (blank=True, null=True)
     stadium = models.CharField(max_length=60, null=True, blank=True)
     founded = models.DateField(default="1950-01-01")
     division = models.ForeignKey(
@@ -41,7 +41,7 @@ class PLayers(models.Model):
     name = models.CharField(max_length=60)
     firstName = models.CharField(max_length=60)
     poste = models.CharField(max_length=50)
-    thumbnail = models.ImageField(upload_to="thumbnail/photo", null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="photo", null=True, blank=True)
     age = models.DateField(default="1980-01-01")
     actif = models.BooleanField()
     injury = models.BooleanField()
@@ -60,7 +60,7 @@ class Coachs(models.Model):
     name = models.CharField(max_length=60)
     firstName = models.CharField(max_length=60)
     poste = models.CharField(max_length=50, null=True, blank=True)
-    thumbnail = models.ImageField(upload_to="thumbnail/photo", null=True, blank=True)
+    thumbnail = models.ImageField(upload_to="photo", null=True, blank=True)
     actif = models.BooleanField()
     team = models.ForeignKey(
         Teams,
