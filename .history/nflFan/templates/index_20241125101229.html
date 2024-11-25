@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+<a href="{% url 'players_index' %}">Voir les joueurs</a>
+<a href="{% url 'players_index' %}">Voir les joueurs</a>
+<article class="teamView"> 
+    {% for team in teams %}
+    <div class="teamCard">
+        <div class="cardHeader">  
+            <img src="{{ team.thumbnail.url }}" alt="logo des Kansas City Chiefs">
+        </div>
+        <div class="cardBody">
+            <h2> {{ team.name}} </h2>
+            <p> {{ team.stadium }}</p>
+        </div>
+    </div>
+    {% endfor %}  
+</article>
+{% endblock %}

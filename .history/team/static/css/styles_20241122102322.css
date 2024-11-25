@@ -1,0 +1,25 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+}
+  
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+.teamView{
+    display: flex;
+    flex-direction: row;
+}
+.teamCard{
+    border: 2px, solid, black;
+    margin-left: 1rem;
+}
+.cardHeader>img{
+    width: 20%;
+}

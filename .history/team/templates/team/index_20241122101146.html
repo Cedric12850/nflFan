@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+
+{% for team in teams %}
+<article>
+    <div class="teamCard">
+        <h2> {{ team.name}} </h2>
+        <img src="{{ team.thumbnail.url }}" alt="logo des Kansas City Chiefs">
+        <p> {{ team.stadium }}</p>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock %}

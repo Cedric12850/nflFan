@@ -1,0 +1,34 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+}
+  
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+
+/* ----- Team View */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+}
+.teamCard{
+    border: 2px, solid, black;
+    margin: 1rem 1rem 1rem 1rem;
+    width: 40%;
+}
+.cardHeader>img{
+    width: 20%;
+}
+
+/* ----- End Team View */
+
+/* ----- Responsive screen > 1200px */
+
+/* ----- End Responsive screen > 1200px */

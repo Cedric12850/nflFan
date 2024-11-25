@@ -1,0 +1,11 @@
+.teamView{
+    display: flex;
+    flex-direction: row;
+}
+.teamCard{
+    border: 2%;
+    margin-bottom: 3%;
+}
+.cardHeader>img{
+    width: 25%;
+}

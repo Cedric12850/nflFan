@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+
+{% for data in api_data %}
+<h2> {{ team.item }} </h2>
+
+{% endfor %}
+
+{% endblock %}

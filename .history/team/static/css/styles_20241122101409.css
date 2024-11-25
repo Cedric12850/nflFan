@@ -1,0 +1,9 @@
+.teamView{
+    display: flex;
+    flex-direction: row;
+}
+.teamCard{
+    border: 2px, solid, black;
+    width: max-content;
+    margin-bottom: ;
+}

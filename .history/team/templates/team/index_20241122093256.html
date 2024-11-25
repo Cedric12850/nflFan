@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+
+{% for item in items %}
+<a href="{{ item[$ref] }}" target="_blank">{{ item.[$ref] }}</a>
+
+{% endfor %}
+
+{% endblock %}
