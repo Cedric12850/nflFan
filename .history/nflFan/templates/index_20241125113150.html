@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+<article class="box_link_appli">
+    <div class="link_appli">
+        <a href="{% url 'teams_index' %}">
+            <img src="/media/nfl.png" alt="lien vers toutes les équipes">
+        <h4>Toutes les équipes</h4></a>
+    </div>
+    <div class="link_appli">
+        <a href="{% url 'players_index' %}">
+            <img src="/media/player_card.png" alt="lien vers tous les joueurs">
+            <h4>Toutes les joueurs</h4>
+        </a>
+    </div>
+</article>
+{% endblock %}

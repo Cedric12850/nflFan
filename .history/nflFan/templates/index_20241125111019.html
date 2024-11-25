@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Fan </h1>
+<a href="{% url 'teams_index' %}">Voir les équipes</a> 
+<a href="{% url 'players_index' %}">Voir les joueurs</a>
+
+{% endblock %}

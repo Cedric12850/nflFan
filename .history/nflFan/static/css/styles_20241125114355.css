@@ -1,0 +1,73 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+}
+  
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+
+/* ----- Home Page ----- */
+.box_link_appli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+/* ----- End Home Page ----- */
+
+
+/* ----- Team View */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+}
+.teamCard{
+    border: 2px, solid, black;
+    margin: 1rem 1rem 1rem 1rem;
+    width: 100%;
+}
+.cardHeader>img{
+    width: 100%;
+}
+
+/* ----- End Team View */
+
+
+/* ----- Responsive screen > 768px */
+@media screen and (min-width: 768px) {
+    .teamCard{
+        width:46%
+    }
+
+}
+/* ----- End Responsive screen > 768px */
+
+/* ----- Responsive screen > 992px */
+@media screen and (min-width: 992px) {
+    .teamCard{
+        width:30%
+    }
+
+    /* ----- Home Page ----- */
+    .li
+    /* ----- End Home Page ----- */
+
+}
+/* ----- End Responsive screen > 992px */
+
+/* ----- Responsive screen > 1200px */
+@media screen and (min-width: 1200px) {
+    .teamCard{
+        width: 10%
+    }
+
+}
+/* ----- End Responsive screen > 1200px */

@@ -1,0 +1,130 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+}
+  
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+
+
+/* ----------------------- Home Page -------------------------------- */
+.box_link_appli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box_link_appli img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+.link_appli_teams, .link_appli_players {
+    width: 100%;
+    text-align: center;
+    margin: 2%;
+}
+/* ------------------------- End Home Page ----------------------------- */
+
+
+/* ------------------------- Team View --------------------------------- */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+}
+.teamCard{
+    border: 2px, solid, black;
+    margin: 1rem;
+    width: 100%;
+}
+.teamCardHeader>img{
+    width: 100%;
+}
+/* -------------------------- End Team View ---------------------------- */
+
+/* -------------------------- Player View ------------------------------ */
+.playerView{
+    display: flex;
+    flex-wrap: wrap;
+}
+.playerCard{
+    border: 2px, solid, black;
+    margin: 1rem;
+    padding: 4%;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+}
+.playerCardHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+.playerTeamName{
+    background-color: orangered;
+    padding: 0.5rem;
+}
+.playerPhoto{
+    border: 0.7rem solid orangered;
+    width: 100%;
+}
+.playerCardBody {
+    margin-top: 1rem;
+    &
+}
+
+/* -------------------------- End Player View -------------------------- */
+
+
+/* -------------------------- Responsive screen > 768px ----------------- */
+@media screen and (min-width: 768px) {
+    .teamCard{
+        width:46%
+    }
+
+    .playerCard{
+        width:46%
+    }
+    .link_appli_teams, .link_appli_players {
+        width: 60%;
+    }
+}
+/* ------------------------- End Responsive screen > 768px -------------- */
+
+/* ------------------------- Responsive screen > 992px ------------------- */
+@media screen and (min-width: 992px) {
+    .teamCard{
+        width:30%
+    }
+
+    .playerCard{
+        width:30%
+    }
+
+    /* --------------------- Home Page ----------------------------------- */
+    .link_appli_teams, .link_appli_players {
+        width: 40%;
+    }
+    /* ---------------------- End Home Page ------------------------------- */
+
+}
+/* -------------------------- End Responsive screen > 992px --------------- */
+
+/* -------------------------- Responsive screen > 1200px ------------------ */
+@media screen and (min-width: 1200px) {
+    .teamCard{
+        width: 10%
+    }
+
+}
+/* -------------------------- End Responsive screen > 1200px --------------- */

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> NFL Players </h1>
+    <a href="/">Retour à la page d'accueil</a>
+    <article class="teamView"> 
+        {% for player in players %}
+        <div class="teamCard">
+            <div class="cardHeader">  
+                <img src="{{ team.thumbnail.url }}" alt="logo des Kansas City Chiefs">
+            </div>
+            <div class="cardBody">
+                <h2>{{ player.name }}</h2>
+                <p> {{ team.stadium }}</p>
+            </div>
+        </div>
+        {% endfor %}  
+    </article>
+    
+
+    
+    {% endfor %}
+{% endblock %}

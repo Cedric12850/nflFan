@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> NFL Players </h1>
+    <a href="/">Retour à la page d'accueil</a>
+    <article class="playerView"> 
+        {% for player in players %}
+        <div class="playerCard">
+            <div class="cardHeader">  
+                <img src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
+            </div>
+            <div class="cardBody">
+                <h2>{{ player.name }} {{ player.firsName }}</h2>
+                
+            </div>
+        </div>
+        {% endfor %}  
+    </article>
+    
+{% endblock %}

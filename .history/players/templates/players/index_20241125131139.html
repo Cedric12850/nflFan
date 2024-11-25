@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Players </h1>
+<a href="/">Retour à la page d'accueil</a>
+
+{% for player in players %}
+<h2>{{ player.name }}</h2>
+{% endbl%}
+{% endblock %}
