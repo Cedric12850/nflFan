@@ -19,11 +19,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 from nflFan import settings
-from nflFan import views
+from team.views import index
+# from player.views import index
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('', include('team.urls')),
+    path('', index, name='index'),
+    path('')
     path('', include('players.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
