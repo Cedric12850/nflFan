@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from team.models import PLayers, Teams
+from players.models import PLayers
+from team.models import Teams
 
 
 # Create your views here.
