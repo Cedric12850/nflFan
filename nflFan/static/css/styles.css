@@ -13,7 +13,6 @@ html {
     text-transform: capitalize;
 }
 
-
 /* ----------------------- Home Page -------------------------------- */
 .box_link_appli {
     display: flex;
@@ -35,7 +34,7 @@ html {
 /* ------------------------- End Home Page ----------------------------- */
 
 
-/* ------------------------- Team View --------------------------------- */
+/* ------------------------- All Team View --------------------------------- */
 .teamView{
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +47,31 @@ html {
 .teamCardHeader>img{
     width: 100%;
 }
-/* -------------------------- End Team View ---------------------------- */
+.teamLink {
+    text-decoration: none;
+    color: white;
+}
+/* -------------------------- End All Team View ---------------------------- */
+
+/* ------------------------- Team View Detail --------------------------------- */
+.teamDetailContainer {
+    width: 90%;
+    margin: auto;
+}
+.cardTeamDetail{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.detailTeam{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2%;
+    margin: 2%;
+}
+/* -------------------------- End Team View Detail ---------------------------- */
+
 
 /* -------------------------- Player View ------------------------------ */
 .playerView{
@@ -141,3 +164,7 @@ html {
     }
 }
 /* -------------------------- End Responsive screen > 1200px --------------- */
+
+/* ------------------------- View --------------------------------- */
+
+/* -------------------------- End View ---------------------------- */

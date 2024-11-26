@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 #import des models
 from team.models import Teams
@@ -23,3 +23,15 @@ def dynamics_css(request):
         }}
         """
     return HttpResponse(css, content_type="text/css")
+
+def get_team_by_id(team_id):
+    try:
+        team = Teams.objects.get(id=team_id)
+        return team
+    except Teams.DoesNotExist:
+        return None
+    
+def team_detail_view(request, team_id):
+    team = get_object_or_404(Teams, id=team_id)
+    coaches = team.coachs.all()
+    return render(request, 'team/team_detail.html', {'team': team, 'coaches': coaches})
