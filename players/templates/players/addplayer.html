@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> Ajouter un joueur </h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if errors %}
+    <ul>
+        {% for field, error_list in errors.items %}
+            <li>{{ field }}: {{ error_list|join:", " }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+        <input type="submit" value="ajouter" name="" id="addplayer">
+    </form>
+    
+{% endblock %}

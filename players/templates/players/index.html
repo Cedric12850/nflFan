@@ -3,6 +3,17 @@
 {% block content %}
 
     <h1> NFL Players </h1>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <a href="/players/addplayer/">Formulaire d'ajout de joueur</a> </br>
     <a href="/">Retour à la page d'accueil</a>
     <article class="playerView"> 
         {% for player in players %}

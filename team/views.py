@@ -16,10 +16,12 @@ def dynamics_css(request):
         css += f"""
         .teamColorOne-{team.id} {{
             background-color: {team.colorOne or "#FFFFFF"};
-            color: white
+            color: white;
+            
+            box-shadow: 1px 1px 3px 3px {team.colorTwo or "#FFFFFF"};
         }}
         .teamColorTwo-{team.id} {{
-            background-color: {team.colorTwo or "#FFFFFF"}
+            background-color: {team.colorTwo or "#FFFFFF"},
         }}
         """
     return HttpResponse(css, content_type="text/css")

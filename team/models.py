@@ -27,6 +27,7 @@ class Teams(models.Model):
     thumbnail = models.ImageField(upload_to="logo", null=True, blank=True)  #si on ne veut pas que l'image soit obligatoire il faut ajoutter dans les param (blank=True, null=True)
     stadium = models.CharField(max_length=60, null=True, blank=True)
     founded = models.DateField(default="1950-01-01")
+    owner = models.CharField(max_length=60, null=True, blank=True)
     colorOne = models.CharField(max_length= 15, null=True, blank=True)
     colorTwo = models.CharField(max_length= 15, null=True, blank=True)
     division = models.ForeignKey(
