@@ -10,8 +10,7 @@ from team.models import Teams
 # Create your views here.
 def players_index (request):
     players = PLayers.objects.all()
-    for player in players:
-        player.team = Teams.objects.get(id=player.team_id)
+    
     return render(request, 'players/index.html', {'players': players})
 
 def addplayer(request):

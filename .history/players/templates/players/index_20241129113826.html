@@ -11,9 +11,9 @@
         {% endfor %}
     </ul>
     {% endif %}
-        
-        <a href="/players/addplayer/"><button>Formulaire d'ajout de joueur</button></a> </br>
-        <a href="/"><button>Retour à la page d'accueil</button></a>
+
+        <a href="/players/addplayer/">Formulaire d'ajout de joueur</a> </br>
+        <a href="/">Retour à la page d'accueil</a>
         <article class="playerView"> 
             {% for player in players %}
            
@@ -23,13 +23,12 @@
                         <div class="ranking_position">
                             <div>
                                 <h6> Ranking </h6>
-                                <h6> Pos </h6>
-                                <h3> {{ player.poste}} </h3>
-                                <img src="{{ player.team.thumbnail.url}}" alt="{{ team.name }}">
+                                <h6>Pos</h6>
+                                <h3> {{ player.poste}} </h3><img src="{{ player.team.thumbnail.url}}" alt="{{ team.name }}">
                             </div>
                             
                         </div>
-                        <img src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
+                        <img class="playerPhoto" src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
                     </div>
                     <div class="crud_player">
                         <button class="teamColorOne-{{player.team.id}}"> modifier</button>

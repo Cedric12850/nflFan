@@ -12,6 +12,7 @@ def players_index (request):
     players = PLayers.objects.all()
     for player in players:
         player.team = Teams.objects.get(id=player.team_id)
+        print(player.team.t)
     return render(request, 'players/index.html', {'players': players})
 
 def addplayer(request):
