@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL Team </h1>
+<a href="/">Retour à la page d'accueil</a> </br>
+<a href="{% url 'players_index' %}">Voir les joueurs</a>
+<article class="teamView"> 
+    {% for team in teams %}
+    
+    <div class="teamCard teamColorOne-{{ team.id }} teamBoxShadowColorOne-{team.id}">
+        <a class="teamLink" href="{% url 'team_detail' team.id %}">
+            <div class="teamCardHeader">  
+                <img src="{{ team.thumbnail.url }}" alt="logo des {{team.town}} {{team.name}}">
+            </div>
+            <div class="cardBody">
+                <h2> {{ team.name}} </h2>
+                <p> {{ team.stadium }}</p>
+            </div>
+        </a>
+    </div>
+    
+    {% endfor %}  
+</article>
+{% endblock %}

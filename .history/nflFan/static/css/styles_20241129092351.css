@@ -1,0 +1,248 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+}
+  
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+  
+*::first-letter {
+    text-transform: capitalize;
+}
+
+/* ----------------------- Navbar -------------------------------- */
+.topMenu{
+    padding: 1rem 3rem 1rem 2rem; 
+    background-color: rgba(1, 1, 31, 0.87);
+    color: white;
+}
+.viewResultMatch {
+    padding: 0.3rem 3rem 0rem 2rem; 
+}
+.menuNavbar {
+    padding: 0rem 3rem 0rem 2rem; 
+}
+/* ----------------------- End Navbar -------------------------------- */
+
+
+/* ----------------------- Home Page -------------------------------- */
+.box_link_appli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box_link_appli img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+.link_appli_teams, .link_appli_players {
+    width: 100%;
+    text-align: center;
+    margin: 2%;
+}
+/* ------------------------- End Home Page ----------------------------- */
+
+
+/* ------------------------- All Team View --------------------------------- */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.teamCard{
+    margin: 0.5rem;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+.teamCardHeader>img{
+    width: 100%;
+}
+.teamLink {
+    text-decoration: none;
+    color: white;
+}
+/* -------------------------- End All Team View ---------------------------- */
+
+/* ------------------------- Team View Detail --------------------------------- */
+.teamDetailContainer {
+    width: 90%;
+    margin: auto;
+}
+.cardTeamDetail{
+    display: flex;
+    flex-wrap: wrap;
+}
+.detailTeam{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 56%;
+    padding: 2%;
+}
+.name_division_team {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.name_division_team>h1 {
+    justify-self: start;
+}
+.owner_division_team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+/* -------------------------- End Team View Detail ---------------------------- */
+
+
+/* -------------------------- Player View ------------------------------ */
+.playerView{
+    display: flex;
+    flex-wrap: wrap;
+}
+/* .playerCard{
+    border: 2px, solid, black;
+    margin: 1rem;
+    padding: 1% 3% 2% 3%;
+    /*  up left down right */
+    /*width: 100%;
+    overflow: hidden;
+}
+.playerCardHeader {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+.playerTeamName{
+    padding: 0.5rem;
+}
+.playerPhoto{
+    width: auto;
+}
+.playerCardBody {
+    margin-top: 0.5rem;
+    &>.cssOrangeLine{
+        height: 8px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    &>h2 {
+        padding: 0.5rem;
+    }
+    &>h3 {
+        padding: 0.5rem;
+        width: fit-content;
+    }
+} */
+
+.playerCard {
+    background-color: transparent;
+    border: 2px, solid, black;
+}
+.backgroundCardPlayer {
+    background-image: url('../../../media/card_backgroung.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    margin-left: 5%;
+    margin-right: 5%;
+    clip-path: polygon(0% 25%, 100% 15%, 100% 100%, 0% 100%);
+}
+.backgroundCardPlayer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.651); /* Couleur semi-transparente */
+    z-index: 1; /* Place la couche au-dessus de l'image */
+    clip-path: polygon(0% 25%, 100% 15%, 100% 100%, 0% 100%); /* Même forme */
+    pointer-events: none; /* Permet de cliquer à travers la couche transparente */
+}
+
+.messages {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50; /* Vert pour les succès */
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1; /* Initialement complètement visible */
+}
+
+.messages.error {
+    background-color: #f44336; /* Rouge pour les erreurs */
+}
+
+.messages.warning {
+    background-color: #ff9800; /* Orange pour les avertissements */
+}
+
+/* -------------------------- End Player View -------------------------- */
+
+
+/* -------------------------- Responsive screen > 768px ----------------- */
+@media screen and (min-width: 768px) {
+    .teamCard{
+        width:46%
+    }
+
+    .playerCard{
+        width:46%
+    }
+    .link_appli_teams, .link_appli_players {
+        width: 60%;
+    }
+}
+/* ------------------------- End Responsive screen > 768px -------------- */
+
+/* ------------------------- Responsive screen > 992px ------------------- */
+@media screen and (min-width: 992px) {
+    .teamCard{
+        width:30%
+    }
+
+    .playerCard{
+        width:30%
+    }
+
+    /* --------------------- Home Page ----------------------------------- */
+    .link_appli_teams, .link_appli_players {
+        width: 40%;
+    }
+    /* ---------------------- End Home Page ------------------------------- */
+
+}
+/* -------------------------- End Responsive screen > 992px --------------- */
+
+/* -------------------------- Responsive screen > 1200px ------------------ */
+@media screen and (min-width: 1200px) {
+    .teamCard {
+        width: 10%
+    }
+    .playerCard {
+        width: 10%;
+        padding: 4px;
+
+    }
+}
+/* -------------------------- End Responsive screen > 1200px --------------- */
+
+/* ------------------------- View --------------------------------- */
+
+/* -------------------------- End View ---------------------------- */

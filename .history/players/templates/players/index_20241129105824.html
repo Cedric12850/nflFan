@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> NFL Players </h1>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+        <a href="/players/addplayer/">Formulaire d'ajout de joueur</a> </br>
+        <a href="/">Retour à la page d'accueil</a>
+        <article class="playerView"> 
+            {% for player in players %}
+           
+            <div class="playerCard">
+                <div class="backgroundCardPlayer">
+                    <div class="player_stat_img">
+                        <div class="ranking_position">
+                            <div>
+                                <h6> Ranking </h6>
+                                <h6>Pos</h6>
+                                <h3> {{ player.poste}} </h3>
+                            </div>
+                            <div><img src="{{ team.thumbnail.url }}" alt="{{ team.thumbnail.url }}"></div>
+                        </div>
+                        <img class="playerPhoto" src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
+                    </div>
+                    <div class="crud_player">
+                        <button>modifier</button>
+                        <button>supprimer</button>
+                    </div>
+                </div> <div class="player_card_body teamColorOne-{{ player.team.id }}">
+                        <h5>{{ player.firstName }} </h5>
+                        <h3> {{ player.name}} </h3>
+                        <img src="" alt="logo nfl">
+                    </div>
+            </div>
+        
+
+        {% endfor %}  
+    </article>
+    
+{% endblock %}
