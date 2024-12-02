@@ -25,33 +25,15 @@ class Stadium(models.Model):
     name = models.CharField(max_length=60)
     town = models.CharField(max_length=60)
     capacity = models.IntegerField(null=True, blank=True)
-    toiture = models.CharField(
-        max_length=30,
-        choices=[
-            ('ouverte', 'Ouverte'),
-            ('couverte', 'Couverte'),
-            ('retractable', 'Rétractable'),
-        ],
-        null=True,
-        blank=True
-    )
+    toiture = models.CharField(max_length=30)
     creation = models.DateField()
-    thumbnail = models.ImageField(upload_to="stadium", null=True, blank=True)
-    def __str__(self):
-        return self.name
 
 
 class Teams(models.Model):
     name = models.CharField(max_length=60)
     town = models.CharField(max_length=60)
     thumbnail = models.ImageField(upload_to="logo", null=True, blank=True)  #si on ne veut pas que l'image soit obligatoire il faut ajoutter dans les param (blank=True, null=True)
-    stadium = models.ForeignKey(
-        Stadium,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="teams"
-    )
+    stadium = models.CharField(max_length=60, null=True, blank=True)
     founded = models.DateField(default="1950-01-01")
     owner = models.CharField(max_length=60, null=True, blank=True)
     colorOne = models.CharField(max_length= 15, null=True, blank=True)
@@ -86,7 +68,7 @@ class Coachs(models.Model):
     
 class Superbowls(models.Model):
     name = models.CharField(max_length=20, null=True, blank=True)
-    year = models.DateField(null=True, blank=True)
+    year = models.DateField
     town = models.CharField(max_length=60)
     stadium = models.CharField(max_length=60)
     winner = models.ForeignKey(
@@ -111,4 +93,4 @@ class Superbowls(models.Model):
         related_name="superbowls_teamTwo"       # Facilite l'accès aux joueurs depuis une équipe
     )
     def __str__(self):
-        return f"{self.name} ({self.year})"
+        return f"{self.name} ({self.year}"

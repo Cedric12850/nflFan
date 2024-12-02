@@ -32,9 +32,6 @@ class Stadium(models.Model):
             ('couverte', 'Couverte'),
             ('retractable', 'Rétractable'),
         ],
-        null=True,
-        blank=True
-    )
     creation = models.DateField()
     thumbnail = models.ImageField(upload_to="stadium", null=True, blank=True)
     def __str__(self):

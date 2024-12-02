@@ -72,8 +72,8 @@ class CoachsAdmin(admin.ModelAdmin):
     thumbnail_preview.short_description = "Aperçu du logo"
 
 class StadiumAdmin(admin.ModelAdmin):
-    list_display = ("name", "town", "capacity", 'creation_year', 'thumbnail', 'toiture')
-    search_fields = ('toiture', 'town')
+    list_display = ("name", "town", "capacity", 'creation', 'thumbnail', 'toiture')
+    search_fields = ("name", 'toiture')
     list_filter = ('name', 'toiture')
     list_per_page = 10
 

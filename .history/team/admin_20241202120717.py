@@ -73,7 +73,7 @@ class CoachsAdmin(admin.ModelAdmin):
 
 class StadiumAdmin(admin.ModelAdmin):
     list_display = ("name", "town", "capacity", 'creation_year', 'thumbnail', 'toiture')
-    search_fields = ('toiture', 'town')
+    search_fields = ('toiture')
     list_filter = ('name', 'toiture')
     list_per_page = 10
 

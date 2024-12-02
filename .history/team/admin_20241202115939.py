@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Coachs, Conferences, Divisions, Stadium, Superbowls, Teams
+from .models import Coachs, Conferences, Divisions, Superbowls, Teams
 
 # Register your models here.
 admin.site.register(Divisions)
@@ -72,14 +72,13 @@ class CoachsAdmin(admin.ModelAdmin):
     thumbnail_preview.short_description = "Aperçu du logo"
 
 class StadiumAdmin(admin.ModelAdmin):
-    list_display = ("name", "town", "capacity", 'creation_year', 'thumbnail', 'toiture')
-    search_fields = ('toiture', 'town')
+    list_display = ("name", "town", "capacity", 'creation', 'thumbnail', 'toiture')
+    search_fields = ("name", 'toiture')
     list_filter = ('name', 'toiture')
     list_per_page = 10
 
-    def creation_year(self, obj):
+    def creation(self, obj):
         return obj.creation.year
-    creation_year.short_description = "Année de création"
     def thumbnail_preview(self, obj):
         if obj.thumbnail:
             return f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />'
@@ -91,4 +90,4 @@ class StadiumAdmin(admin.ModelAdmin):
 # Enregistrement du modèle et de l'admin personnalisé
 admin.site.register(Teams, TeamsAdmin)
 admin.site.register(Coachs,CoachsAdmin)
-admin.site.register(Stadium, StadiumAdmin)
+admin.site.register(sta)

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe  # Pour afficher du HTML sécurisé
 
 from .models import Coachs, Conferences, Divisions, Stadium, Superbowls, Teams
 
@@ -39,10 +40,9 @@ class TeamsAdmin(admin.ModelAdmin):
     def founded_year(self, obj):
         return obj.founded.year
     
-
     def thumbnail_preview(self, obj):
         if obj.thumbnail:
-            return f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />'
+            return mark_safe(f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />')
         return "Pas d'image"
     thumbnail_preview.allow_tags = True
     thumbnail_preview.short_description = "Aperçu du logo"
@@ -66,23 +66,24 @@ class CoachsAdmin(admin.ModelAdmin):
     
     def thumbnail_preview(self, obj):
         if obj.thumbnail:
-            return f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />'
+            return mark_safe(f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />')
         return "Pas d'image"
     thumbnail_preview.allow_tags = True
     thumbnail_preview.short_description = "Aperçu du logo"
 
 class StadiumAdmin(admin.ModelAdmin):
     list_display = ("name", "town", "capacity", 'creation_year', 'thumbnail', 'toiture')
-    search_fields = ('toiture', 'town')
-    list_filter = ('name', 'toiture')
+    search_fields = ("name", 'toiture')
+    list_filter = ('town', 'toiture')
     list_per_page = 10
 
     def creation_year(self, obj):
         return obj.creation.year
     creation_year.short_description = "Année de création"
+
     def thumbnail_preview(self, obj):
-        if obj.thumbnail:
-            return f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />'
+       if obj.thumbnail:
+            return mark_safe(f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />')
         return "Pas d'image"
     thumbnail_preview.allow_tags = True
     thumbnail_preview.short_description = "Aperçu du stade"

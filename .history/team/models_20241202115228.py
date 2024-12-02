@@ -25,16 +25,7 @@ class Stadium(models.Model):
     name = models.CharField(max_length=60)
     town = models.CharField(max_length=60)
     capacity = models.IntegerField(null=True, blank=True)
-    toiture = models.CharField(
-        max_length=30,
-        choices=[
-            ('ouverte', 'Ouverte'),
-            ('couverte', 'Couverte'),
-            ('retractable', 'Rétractable'),
-        ],
-        null=True,
-        blank=True
-    )
+    toiture = models.CharField(max_length=30)
     creation = models.DateField()
     thumbnail = models.ImageField(upload_to="stadium", null=True, blank=True)
     def __str__(self):
