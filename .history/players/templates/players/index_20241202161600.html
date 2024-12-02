@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> NFL Players </h1>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+        
+    
+        <!-- Modal pour le formulaire de recherche -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Rechercher un joueur</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Rechercher un joueur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form method="get" class="filter-form">
+                    {{ filter.form.as_p }}
+                    <button type="submit">Search</button>
+                    <a href="{% url 'players_index' %}">
+                        <button type="button">Reset</button>
+                    </a>
+                </form>
+            </div>
+        </div>
+        <!-- Fin de la modal -->
+    
+
+        <article class="playerView"> 
+            {% for player in filter.qs %}
+           
+            <div class="playerCard">
+                <div class="backgroundCardPlayer">
+                    <div class="player_stat_img">
+                        <div class="ranking_position">
+                            <div>
+                                <h6> Ranking </h6>
+                                <h6> Pos </h6>
+                                <h3> {{ player.poste.abrev}} </h3>
+                                <img src="{{ player.team.thumbnail.url}}" alt="{{ team.name }}">
+                            </div>
+                            
+                        </div>
+                        <img src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
+                    </div>
+                    <div class="crud_player">
+                        <button class="teamColorOne-{{player.team.id}}"> modifier</button>
+                        <button class="teamColorOne-{{player.team.id}}"> supprimer</button>
+                    </div>
+                </div> 
+                <div class="player_card_body teamColorOne-{{ player.team.id }} teamBoxShadowColorOne-{player.team.id}">
+                    <div>
+                        <h5> {{ player.firstName }} </h5>
+                        <h3> {{ player.name}} <span>#{{ player.number }}</span></h3>
+                    </div>
+                    <img src="/media/nfl.svg" alt="logo nfl">
+                </div>
+            </div>
+        
+
+        {% endfor %}  
+    </article>
+    
+{% endblock %}

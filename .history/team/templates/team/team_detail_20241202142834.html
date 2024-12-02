@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="teamDetailContainer">
+    <article class="cardTeamDetail teamColorOne-{{ team.id }}">
+        <div>
+            <img src="{{ team.thumbnail.url }}" alt="logo des {{team.town}} {{team.name}}">
+        </div>
+        <div class="detailTeam teamColorTwo-{{ team.id }}">
+            <div class="name_division_team">
+                <h1> {{team.name}} de {{team.town}} </h1>
+                <span> {{ team.division }} </span>
+                <span>
+                    {% for coach in coaches %}
+                        Head Coach : {{ coach.name }} {{ coach.firstName }}
+                    {% endfor %}
+                </span>
+            </div>
+            <div class="owner_division_team">
+                <div >
+                    <p>propiétaire: {{team.owner }}</p>
+                    <p>Franchise fondée en {{ team.founded|date:'Y' }}</p>
+                </div>
+                <div>
+                    <p>{{ team.stadium }}</p>
+                    <img src="{{ team}}" alt="">
+                </div>
+            </div>    
+            
+        </div>
+
+    </article>
+   
+</section>
+<a href="{% url 'teams_index' %}">Retour</a>
+
+{% endblock %}
