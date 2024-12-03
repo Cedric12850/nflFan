@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 
 #import des models
+import players
 from team.models import Teams
 
 # Create your views here.
@@ -18,11 +19,19 @@ def dynamics_css(request):
         .teamColorOne-{team.id} {{
             background-color: {team.colorOne or "#FFFFFF"};
             color: white;
-            
             box-shadow: 1px 1px 3px 3px {team.colorTwo or "#FFFFFF"};
         }}
         .teamColorTwo-{team.id} {{
-            background-color: {team.colorTwo or "#FFFFFF"},
+            background-color: {team.colorTwo or "#FFFFFF"};
+        }}
+
+        .detailTopViewteamColorOne-{team.id} {{
+            background-color: {team.colorOne or "#FFFFFF"};
+            color: white
+        }}
+        
+        .detailTopViewborderTeamColorTwo-{team.id} {{
+            border-left: 0.7rem solid {team.colorTwo or "#FFFFFF"};
         }}
         """
     return HttpResponse(css, content_type="text/css")

@@ -6,7 +6,7 @@ from players.models import PLayers, Player_position
 
 class PlayersAdmin(admin.ModelAdmin):
     # Afficher des colonnes supplémentaires dans la liste des objets
-    list_display = ('name', 'firstName','thumbnail', 'age','team', 'poste', 'number', 'actif', 'injury' )
+    list_display = ('name', 'firstName','thumbnail', 'age','team', 'poste', 'number','draft_year', 'actif', 'injury' )
 
     # Ajout d'un champ de recherche
     search_fields = ('name', 'firstName', 'team', 'poste')
@@ -20,9 +20,11 @@ class PlayersAdmin(admin.ModelAdmin):
     # Prévisualisation des images (si applicable)
     readonly_fields = ('thumbnail_preview',)
 
-    def founded_year(self, obj):
-        return obj.founded.year
-    
+    def draft_year(self, obj):
+        if obj.draft:  # Vérifie si draft est non nul
+            return obj.draft.year
+        return "Non défini"  # Valeur par défaut si draft est None
+    draft_year.short_description = "Draft"  # Garde le titre de la colonne
 
     def thumbnail_preview(self, obj):
         if obj.thumbnail:

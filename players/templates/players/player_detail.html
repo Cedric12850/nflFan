@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <article class="playerDetailTopView">
+        <div class="detailLeftTopView">
+            <h3> {{ player.name}} {{ player.firstName}} <span> #{{ player.number }} </span></h3>   
+            <h3> {{ player.poste.abrev }} </h3>
+            <div class="">
+                <button class="teamColorOne-{{player.team.id}}"> modifier</button>
+                <button class="teamColorOne-{{player.team.id}}"> supprimer</button>
+            </div>
+        </div>
+        <div class="detailDivBackground teamColorTwo-{{player.team.id}}"></div>
+        <div class="detailRightTopView detailTopViewteamColorOne-{{player.team.id}}">
+            
+            <img src="{{ player.thumbnail.url }}" alt="">
+        </div>    
+    </article>
+    <article>
+        <h5>Info / stat</h5>
+    </article>
+</section>
+    
+{% endblock %}

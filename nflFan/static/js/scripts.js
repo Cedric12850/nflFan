@@ -2,13 +2,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const messages = document.getElementsByClassName('messages');
-    if (messages) {
+    if (messages.length > 0) {
         setTimeout(() => {
-            messages.style.transition = 'opacity 1s';
-            messages.style.opacity = 0; // Disparaît en douceur
-            setTimeout(() => messages.remove(), 1000); // Supprime après la transition
+            Array.from(messages).forEach((message) => {
+                message.style.transition = 'opacity 1s';
+                message.style.opacity = 0; // Disparaît en douceur
+                setTimeout(() => message.remove(), 1000); // Supprime après la transition
+            });
         }, 10000); // 10 secondes
     }
+});
+
+// REdirection vers la page détail du joueur grace à data-link
+document.querySelectorAll('.playerCard').forEach(card => {
+    card.addEventListener('click', () => {
+        const link = card.getAttribute('data-link');
+        window.location.href = link;
+    });
 });
 
 // Affichage des images de l'équipe dans le select de recherche d'un joueur

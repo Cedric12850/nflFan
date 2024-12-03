@@ -32,6 +32,7 @@ class PLayers(models.Model):
         blank=True,                  # Rend le champ facultatif dans les formulaires
         related_name="players"       # Facilite l'accès aux joueurs depuis une équipe
     )
+    draft = models.DateField(null=True, blank=True)
     def __str__(self):           # Formate l'affichage en BdD
         return f"{self.name} {self.firstName}"
     

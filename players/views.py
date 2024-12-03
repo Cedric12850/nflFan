@@ -1,6 +1,6 @@
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
 from players.filters import PLayersFilter
 from players.forms import PlayerForm
@@ -8,7 +8,7 @@ from players.models import PLayers
 from team.models import Teams
 
 
-# Create your views here.
+# Vue pour afficher tous les joueurs de la BdD et les filtrer dans la recherche
 def players_index (request):
     players = PLayers.objects.all()
     for player in players:
@@ -20,6 +20,7 @@ def players_index (request):
     }
     return render(request, 'players/index.html', context)
 
+# Vue pour ajoutter un joueur dans la BdD
 def addplayer(request):
     if request.method == "POST":
         form = PlayerForm(request.POST, request.FILES)
@@ -35,24 +36,24 @@ def addplayer(request):
     return render(request, "players/addplayer.html", {"form": form})
 
 
-# Ne fonctionne pas à corriger POur le moement j'utilise le css dynamique de team
+# Vue pour afficher un joueur en détail
+def player_detail(request, id):
+    player = get_object_or_404(PLayers, id=id)
+    return render(request, 'players/player_detail.html', {'player': player})
+
+
+# Ne fonctionne pas à corriger Pour le moment j'utilise le css dynamique de team
 def dynamics_css(request):
     teams = Teams.objects.all()
     css = ""
     for team in teams:
         css += f"""
-        .teamColorOne-{{player.team.id}} {{
+        .detailTopViewteamColorOne-{{player.team.id}} {{
             background-color: {team.colorOne or "#FFFFFF"};
             color: white
         }}
-        .teamColorTwo-{{player.team.id}} {{
-            background-color: {team.colorTwo or "#FFFFFF"}
-        }}
-
-        .borderTeamColorOne-{{player.team.id}} {{
-            border: 0.7rem solid {team.colorOne or "#FFFFFF"};
-        }}
-        .borderTeamColorTwo-{{player.team.id}} {{
+        
+        .detailTopViewborderTeamColorTwo-{{player.team.id}} {{
             border: 0.7rem solid {team.colorTwo or "#FFFFFF"};
         }}
         """
