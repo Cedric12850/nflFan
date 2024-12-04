@@ -1,40 +1,57 @@
 html {
     box-sizing: border-box;
     font-family: "roboto";
-}
-  
+    -webkit-font-smoothing: antialiased;
+} 
 *, *:after, *:before {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
 }
-  
 *::first-letter {
     text-transform: capitalize;
 }
+.container, body{
+    background-color: rgb(238, 238, 238);
+}
 
-/* ----------------------- Navbar -------------------------------- */
-.topMenu{
-    padding: 1rem 3rem 1rem 2rem; 
-    background-color: rgba(1, 1, 31, 0.87);
-    color: white;
+/* ----------------------- General ----------------------------------- */
+a {
+    text-decoration: none;
 }
-.viewResultMatch {
-    padding: 0.3rem 3rem 0rem 2rem; 
-}
-.menuNavbar {
-    padding: 0rem 3rem 0rem 2rem; 
-}
-/* ----------------------- End Navbar -------------------------------- */
+/* ----------------------- End General ------------------------------- */
 
 /* ----------------------- Footer ------------------------------------ */
-.footer{
+footer{
     margin-top: 1rem;
     padding: 1rem 3rem 1rem 2rem; 
     background-color: rgba(1, 1, 31, 0.87);
     color: white;
 }
 /* ----------------------- End Footer -------------------------------- */
+
+
+header{
+    background-color: white;
+}
+/* ----------------------- Navbar -------------------------------- */
+.topMenu{
+    padding: 1rem 0.4rem 1rem 0.4rem; 
+    background-color: rgba(1, 1, 31, 0.87);
+    color: white;
+}
+.viewResultMatch {
+    padding: 0.3rem 0.4rem 0rem 0.4rem; 
+}
+.menuNavbar {
+    padding: 0rem 0.2rem 0rem 0.4rem; 
+}
+.divNavBar{
+    padding: 0;
+}
+/* ----------------------- End Navbar -------------------------------- */
+
+
 
 /* ----------------------- Home Page -------------------------------- */
 .box_link_appli {
@@ -117,7 +134,6 @@ html {
     display: flex;
     flex-wrap: wrap;
 }
-
 .playerCard {
     width: 100%;
     height: 450px;
@@ -132,6 +148,7 @@ html {
     justify-content: space-between;
     align-items: center;
     color: white;
+    z-index: 1;
 }
 .backgroundCardPlayer {
     background-image: url('../../../media/card_backgroung.jpg');
@@ -243,29 +260,142 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
+    
+    
 }
 .detailLeftTopView {
     width: 60%;
     background-color: rgb(238, 238, 238);
     margin: 0;
-
+    padding-left: 2%;
+    height: auto;
+    & h2 {
+        font-weight: 500;
+        margin-top: 2%;
+    }
+    & p {
+        font-weight: 500;
+        margin-bottom: 0;
+        font-size: 0.7rem;
+    }
+    & a {
+        font-weight: 500;
+        font-size: 0.7rem;
+    }
 }
-.detailDivBackground {
-    width: 5%;
-    margin: 0;
-    padding: 0;
-    clip-path: polygon(70% 0%, 100% 0%, 30% 100%, 00% 100%);
-    background-color: black;
+.playerStatus{
+    background-color: rgb(26, 177, 26);
+    width: fit-content;
+    margin-top: 1%;
+    padding: 0px 8px 3px 8px;
+    border-radius: 25px ;
+    color: white;
+    font-size:1rem;
 }
-.detailRightTopView {
+.detailBackgroundColorTwo{
     position: relative;
+    display: inline-block;
+    width: 2%;
+}
+.detailBackgroundColorOne{
+    position: relative;
+    display: inline-block;
+    width: 38%;
+}
+.detailBackgroundColorTwo::before{
     z-index: 1;
-    width: 35%; /* Ajuster en fonction de la forme */
-    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
-    margin: 0;
-    padding: 0;
+    content: "";
+    position: absolute;
+    left: -180%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    -webkit-transform: skewX(-10deg);
+    -moz-transform: skewX(-10deg);
+    -ms-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+}
+.detailBackgroundColorOne::before{
+    z-index: 1;
+    content: "";
+    position: absolute;
+    left: -10%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    -webkit-transform: skewX(-10deg);
+    -moz-transform: skewX(-10deg);
+    -ms-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+}
+.playerImgToDetails {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow:hidden;
+    z-index: 1;
+    left: -10%;
 }
 
+.InfosStatsContainer{
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+}
+.gridInfosStats{
+    padding-top: 4%;
+    padding-bottom: 4%;
+    width: auto;
+}
+.linkInfosStats{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    & ul>li{
+        list-style: none;
+        width: 40%;
+        height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid blue;
+    }
+}
+.liStats{
+    background-color: white;
+}
+.liInfos, .liStats:hover{
+    background-color: blue;
+    color: white;
+}
+.gridBlockPlayerInfo{
+    grid-template-columns: [viewport-start] 1fr [content-start] minmax(0, 1248px) [content-end] 1fr [viewport-end];
+    grid-template-rows: [row] 1fr;
+}
+.blockPlayerInfo{
+    display: grid;
+    grid-template-rows: [row] 1fr;
+    grid-template-columns: repeat(12, [col] minmax(0px, 110px));
+    grid-gap: calc(2.28571px + 1.78571vw);
+    width: 100%;
+    height: 300px;
+    background-color: rgb(238, 238, 238);
+}
+.cardinfoPLayer{
+    grid-column: span 12;
+    grid-column-end: auto;
+    background-color: white;
+}
+.crudPlayer {
+    margin-top: 2%;
+}
 
 /* -------------------------- End PLayer Detail View ------------------- */
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1> Delete Player </h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Souhaitez-vous supprimer {{ object.firstName}} {{ object.name}} de la liste des joueurs ?</p>
+        <input class="btn btn-danger" type="submit" value="Supprimer">
+        <a href="{% url 'player_detail' object.pk %}">
+        <button class="btn btn-primary" type="button">Annuler</button>
+    </a>
+    </form>
+    
+    
+{% endblock %}

@@ -1,24 +1,66 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section>
+<section class="playerdetailpage">
+
     <article class="playerDetailTopView">
         <div class="detailLeftTopView">
-            <h3> {{ player.name}} {{ player.firstName}} <span> #{{ player.number }} </span></h3>   
-            <h3> {{ player.poste.abrev }} </h3>
+            <h2> {{ player.firstName}} {{ player.name}} </h2>   
+            <p> {{ player.poste.abrev }} . <span> #{{ player.number }} </span></p>
+            <a href="{% url 'team_detail' player.team.id %}"> {{ player.team.town }} {{player.team.name}} </a>
             <div class="">
-                <button class="teamColorOne-{{player.team.id}}"> modifier</button>
-                <button class="teamColorOne-{{player.team.id}}"> supprimer</button>
+                {% if player.injury == False and player.actif == True %}
+                    <h3 class="playerStatus">Active</h3>
+                {% elif player.injury != False and player.actif == True %}
+                    <h3 class="playerStatus">Injured</h3>
+                {% else %}
+                    <h3 class="playerStatus">Out</h3>
+                {% endif %}
             </div>
         </div>
-        <div class="detailDivBackground teamColorTwo-{{player.team.id}}"></div>
-        <div class="detailRightTopView detailTopViewteamColorOne-{{player.team.id}}">
-            
-            <img src="{{ player.thumbnail.url }}" alt="">
-        </div>    
+        <!-- div for css background -->
+        <div class="detailBackgroundColorTwo detailbackgroundteamColorTwo-{{player.team.id}}"></div>
+        <div class="detailBackgroundColorOne detailbackgroundteamColorOne-{{player.team.id}}"><img class="playerImgToDetails"  src="{{ player.thumbnail.url }}" alt=""></div>
     </article>
-    <article>
-        <h5>Info / stat</h5>
+
+    <article class="InfosStatsContainer">
+        <div class="gridInfosStats">
+            <div class="linkInfosStats">
+                <ul>
+                    <li class="liInfos">Info</li>
+                    <li class="liStats">Stats (inactif)</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+    <article class="gridBlockPLayerInfo">
+        <div class="blockPlayerInfo">
+            <div class="cardinfoPLayer">
+                <article>
+                    <div class="headerBoxPlayerInfo">
+                        <h4>PLayer infos</h4>
+                    </div>
+                    <div class="contentBoxPLayerInfo">
+                        <div class="physicalPlayerInfo">
+                             poids taille
+                        </div>
+                        <div class="experiencePlayerInfo">
+                            experience college age
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </article>
+
+    <article class="crudPlayer">
+        <a href="{% url 'player_detail_edit' player.pk %}">
+            <button class="btn btn-primary" type="button">Modifier</button>
+        </a>
+        <a href="{% url 'player_detail_delete' player.pk %}">
+            <button class="btn btn-danger" type="button">Supprimer</button>
+        </a>
     </article>
 </section>
     

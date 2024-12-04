@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
 
 from players.filters import PLayersFilter
 from players.forms import PlayerForm
@@ -37,9 +39,29 @@ def addplayer(request):
 
 
 # Vue pour afficher un joueur en détail
-def player_detail(request, id):
-    player = get_object_or_404(PLayers, id=id)
+def player_detail(request, pk):
+    player = get_object_or_404(PLayers, pk=pk) # On récupère les joueurs par leurs id
     return render(request, 'players/player_detail.html', {'player': player})
+
+# Class for update player
+class PlayerUpdateView(UpdateView):
+    model = PLayers
+    template_name = "players/edit.html"
+    form_class = PlayerForm
+    
+    def get_success_url(self):
+        return reverse_lazy('player_detail', kwargs={'pk': self.object.pk})
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context["submit_text"] = "Modifier"
+        return context
+
+# Class for delete player
+class PlayerDeleteView(DeleteView):
+    model = PLayers
+    template_name = "players/delete.html"
+    success_url = reverse_lazy('players_index')
 
 
 # Ne fonctionne pas à corriger Pour le moment j'utilise le css dynamique de team

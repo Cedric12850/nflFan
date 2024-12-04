@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 message.style.opacity = 0; // Disparaît en douceur
                 setTimeout(() => message.remove(), 1000); // Supprime après la transition
             });
-        }, 10000); // 10 secondes
+        }, 5000); // 5 secondes
     }
 });
 

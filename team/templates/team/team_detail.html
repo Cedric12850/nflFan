@@ -32,6 +32,12 @@
     </article>
    
 </section>
+<article class="crudPlayer">
+    <a href="{% url 'team_detail-edit' team.pk %}">
+        <button class="btn btn-primary" type="button">Modifier</button>
+    </a>
+   
+</article>
 <a href="{% url 'teams_index' %}">Retour</a>
 
 {% endblock %}
