@@ -4,6 +4,7 @@ html {
     box-sizing: border-box;
     font-family: "roboto";
     -webkit-font-smoothing: antialiased;
+    
 } 
 *, *:after, *:before {
     box-sizing: inherit;
@@ -37,6 +38,7 @@ header{
     background-color: white;
 }
 /* ----------------------- Navbar -------------------------------- */
+
 .logoNavBAr{
     width:100%;
 }
@@ -49,7 +51,7 @@ header{
     padding: 0.3rem 0.4rem 0rem 0.4rem; 
 }
 .menuNavbar {
-    padding: 0rem 0.2rem 0rem 0.4rem; 
+    padding: 0rem 0.2rem 0rem 0.7rem; 
 }
 
 .divNavBar{
