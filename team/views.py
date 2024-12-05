@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
@@ -6,7 +6,7 @@ from django.views.generic import UpdateView, DeleteView, CreateView, DetailView,
 #import des models
 import players
 from team.forms import TeamForm
-from team.models import Teams
+from team.models import Divisions, Teams
 
 # Fonction pour afficher toutes les équipes (remplacer par la classe en-dessous)
 # def teams_index(request):
@@ -49,7 +49,24 @@ class UpdateTeamView(UpdateView):
         context =  super().get_context_data(**kwargs)
         context["submit_text"] = "Modifier"
         return context
+    
+# Récupération des équipes par division pour afficher dans la navBar
+def division_team(request):
+    divisions = Divisions.objects.prefetch_related('teams').all()
 
+    # Structure les données pour les envoyer en JSON
+    data = []
+    for division in divisions:
+        data.append({
+            "division": division.name,
+            "teams": list(division.teams.values()),  # Champs pertinents pour chaque équipe
+        })
+
+    # print("Données envoyées :", data)  # Debug dans le terminal
+    return JsonResponse(data, safe=False)  # Renvoie la réponse JSON
+
+
+# --------------------------------------------------------------------------------------------------------------- #
 def dynamics_css(request):
     teams = Teams.objects.all()
     css = ""

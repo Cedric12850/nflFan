@@ -1,39 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class="teamDetailContainer">
-    <article class="cardTeamDetail teamColorOne-{{ team.id }}">
-        <div>
-            <img src="{{ team.thumbnail.url }}" alt="logo des {{team.town}} {{team.name}}">
-        </div>
-        <div class="detailTeam teamColorTwo-{{ team.id }}">
-            <div class="name_division_team">
-                <h1> {{team.name}} de {{team.town}} </h1>
-                <span> {{ team.division }} </span>
-                <span>
-                    {% for coach in coaches %}
-                        Head Coach : {{ coach.name }} {{ coach.firstName }}
-                    {% endfor %}
-                </span>
-            </div>
-            <div class="owner_division_team">
-                <div >
-                    <p>propiétaire: {{team.owner }}</p>
-                    <p>Franchise fondée en {{ team.founded|date:'Y' }}</p>
-                </div>
-                <div>
-                    <p>{{ team.stadium }}</p>
-                    <img src="{{ stadium.thumbnail.url }}" alt="{{ stadium.name}}">
-                </div>
-            </div>    
-            
-        </div>
+<section class="playerdetailpage">
 
+    <article class="playerDetailTopView">
+        <div class="detailLeftTopView">
+            <h2 class="nameTeamDetail"> {{ team.name}} {{ team.town}} </h2>   
+            <p> {{ team.division }} </p>
+            <div class="">
+                <a href="https://europe.nflshop.com/fr/{{team.town}}-{{team.name}}" target="_blank"><button class="btn btn-primary"><i class="bi bi-cart4"></i> Shop</button></a>
+            </div>
+        </div>
+        <!-- div for css background -->
+        <div class="detailBackgroundColorTwo detailbackgroundteamColorTwo-{{team.id}}"></div>
+        <div class="detailBackgroundColorOne detailbackgroundteamColorOne-{{team.id}}"><img class="playerImgToDetails"  src="{{ team.thumbnail.url }}" alt=""></div>
     </article>
-   
+
+    <article class="InfosStatsContainer">
+        <div class="gridInfosStats">
+            <div class="linkInfosStatsTeam">
+                <ul>
+                    <li class="liInfosTeam">Info</li>
+                    <li class="liRoosterTeam">Rooster</li>
+                    <li class="liStatsTeam">Stats</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+    <article class="gridBlockPLayerInfo">
+        <div class="blockPlayerInfo">
+            <div class="cardinfoPLayer">
+                <article>
+                    <div class="headerBoxPlayerInfo">
+                        <h4>Team infos</h4>
+                    </div>
+                    <div class="contentBoxPLayerInfo">
+                        <div class="physicalPlayerInfo">
+                            <p>{{ team.founded}}</p>
+                            <p>{{ team.owner}}</p>
+                        </div>
+                        <div class="experiencePlayerInfo">
+                            <p>{{ team.stadium}}</p>
+                            <p>{{ team.stadium.creation}}</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </article>
+
+    <article class="crudPlayer">
+        <a href="{% url 'team_detail_edit' team.pk %}">
+            <button class="btn btn-primary" type="button">Modifier</button>
+        </a>
+       
+    </article>
 </section>
 <article class="crudPlayer">
-    <a href="{% url 'team_detail-edit' team.pk %}">
+    <a href="{% url 'team_detail_edit' team.pk %}">
         <button class="btn btn-primary" type="button">Modifier</button>
     </a>
    

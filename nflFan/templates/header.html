@@ -19,15 +19,15 @@
 
     <div class="menuNavbar">
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid divNavBar">
-                <div class="row col-xs-4">
+            <div class="divNavBar">
+                <div class="">
                     <!-- div logo et nom de l'utilisateur connecté -->
                     <div class="">
-                        <a class="navbar-brand " href="/">NFL Fan</a>                
+                        <a class="navbar-brand " href="/"><img class="logoNavBAr" src="/media/nfl.svg" alt="Logo Nfl"></a>                
                         <!-- <h6 class="ms-2 border bg-primary " id="isUser">user name</h6> -->
                     </div>
                 </div>
-                    <div class="">
+                    <div class="navBarBtn">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -35,15 +35,18 @@
                 
                 <!--  div avec le menu burger  -->
                 
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="collapse navbar-collapse navBarGridCollpase" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-self-end">
                         <li class="nav-item">
                             <a class=" nav-link active " aria-current="page" href="/">Accueil</a>
                         </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link " href="/teams">Team</a>
+                        <!-- Team Item -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Team</a>
+                            <ul class="dropdown-menu teamDivisionMenu" id="navbar-divisions"></ul>
                         </li>
+
+                        <!-- Player Item -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Player

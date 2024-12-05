@@ -1,3 +1,5 @@
+@import url();
+
 html {
     box-sizing: border-box;
     font-family: "roboto";
@@ -35,6 +37,9 @@ header{
     background-color: white;
 }
 /* ----------------------- Navbar -------------------------------- */
+.logoNavBAr{
+    width: 100%;
+}
 .topMenu{
     padding: 1rem 0.4rem 1rem 0.4rem; 
     background-color: rgba(1, 1, 31, 0.87);
@@ -48,7 +53,18 @@ header{
 }
 .divNavBar{
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
 }
+.navBarBtn{
+    grid-column: 10;
+    align-content: center;
+    justify-items: end;
+}
+.teamDivisionMenu{
+    display: flex;
+}
+
 /* ----------------------- End Navbar -------------------------------- */
 
 
@@ -112,19 +128,36 @@ header{
     width: 56%;
     padding: 2%;
 }
-.name_division_team {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.nameTeamDetail{
+    font-size: 1rem ;
 }
-.name_division_team>h1 {
-    justify-self: start;
-}
-.owner_division_team {
+
+.linkInfosStatsTeam{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    width: 100%;
+    margin: auto;
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    & ul>li{
+        list-style: none;
+        width: 25%;
+        height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid blue;
+    }
+}
+.liStatsTeam, .liInfosTeam{
+    background-color: white;
+}
+.liRoosterTeam, .liStatsTeam:hover, .liInfosTeam:hover{
+    background-color: blue;
+    color: white;
 }
 /* -------------------------- End Team View Detail ---------------------------- */
 
@@ -436,12 +469,37 @@ header{
         width:30%
     }
 
-    
+    /* --------------------- NavBar ----------------------------------- */
+    .logoNavBAr{
+        width: 20%;
+    }
+    .divNavBar{
+        width: 100%;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 10% 10%;
+    }
+    .navBarGridCollpase {
+        grid-row: 2;
+        grid-column: 1;
+    }
+    .nav-item.dropdown .dropdown-menu {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+    }
+    /* --------------------- End NavBar ------------------------------- */
     /* --------------------- Home Page ----------------------------------- */
     .link_appli_teams, .link_appli_players {
         width: 40%;
     }
     /* ---------------------- End Home Page ------------------------------- */
+
 
     .playerCard {
         width: 40%;

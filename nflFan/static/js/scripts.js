@@ -40,3 +40,48 @@ document.addEventListener('DOMContentLoaded', function() {
         option.appendChild(document.createTextNode(` ${teamName}`)); // Ajoute le texte après l'image
     });
 });
+
+// Affichage des équipes par division dans la navBar
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/navbar/divisions/')
+        .then(response => response.json())
+        .then(data => {
+            const navBar = document.getElementById('navbar-divisions')
+
+        // Boucle sur les divisions et équipes
+        data.forEach(division => {
+            // Création d'un li pour chaque division
+            const divisionLi = document.createElement('li');
+            divisionLi.textContent = division.division;
+
+            // Création des li équipes dans chaque li de division
+            const teamList = document.createElement('li');
+            // Boucle sur chaque division pour avoir la liste des équipes
+            division.teams.forEach(team => {
+                const teamItem = document.createElement('li');
+
+                // Ajoute l'image de l'équipe
+                const teamImg = document.createElement('img');
+                teamImg.src = `/media/${team.thumbnail}`;
+                teamImg.alt = `${team.name} logo`;
+                teamImg.style.width = '20px';
+                teamImg.style.marginRight = '10px';
+
+                // Création du lien pour accéder à l'équipe
+                const teamLink = document.createElement('a');
+                teamLink.classList.add('dropdown-item'),
+                teamLink.href = `/teams/${team.id}`;
+                teamLink.textContent = `${team.town} ${team.name}`;
+
+                teamItem.appendChild(teamImg);
+                teamItem.appendChild(teamLink);
+                teamList.appendChild(teamItem);
+            });
+
+            // Ajout des division dans la navbar
+            divisionLi.appendChild(teamList);
+            navBar.appendChild(divisionLi);
+        });
+    })
+    .catch(error => console.error('Erreur lors du chargement des divisions :', error));
+})
