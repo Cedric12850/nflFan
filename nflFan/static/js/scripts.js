@@ -50,12 +50,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Boucle sur les divisions et équipes
         data.forEach(division => {
+            
             // Création d'un li pour chaque division
-            const divisionLi = document.createElement('li');
+            const divisionLi = document.createElement('div');
             divisionLi.textContent = division.division;
+            divisionLi.classList.add('divDivision')
 
             // Création des li équipes dans chaque li de division
-            const teamList = document.createElement('li');
+            const teamList = document.createElement('div');
             // Boucle sur chaque division pour avoir la liste des équipes
             division.teams.forEach(team => {
                 const teamItem = document.createElement('li');
@@ -69,11 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Création du lien pour accéder à l'équipe
                 const teamLink = document.createElement('a');
-                teamLink.classList.add('dropdown-item'),
+                teamLink.classList.add('dropdown-item', 'linkTeamMenu'),
                 teamLink.href = `/teams/${team.id}`;
-                teamLink.textContent = `${team.town} ${team.name}`;
+                // Ajout des éléments dans le lien
+                teamLink.appendChild(teamImg); // Ajoute l'image d'abord
+                teamLink.appendChild(document.createTextNode(`${team.town} ${team.name}`)); // Ajoute le texte après
 
-                teamItem.appendChild(teamImg);
+                
                 teamItem.appendChild(teamLink);
                 teamList.appendChild(teamItem);
             });
