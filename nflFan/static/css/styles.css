@@ -38,7 +38,7 @@ header{
 }
 /* ----------------------- Navbar -------------------------------- */
 .logoNavBAr{
-    width: auto;
+    width:100%;
 }
 .topMenu{
     padding: 1rem 0.4rem 1rem 0.4rem; 
@@ -51,22 +51,18 @@ header{
 .menuNavbar {
     padding: 0rem 0.2rem 0rem 0.4rem; 
 }
+
 .divNavBar{
     width: 100%;
-    padding: 0;
-    display: flex;
 }
-.navBarBtn{
-    align-content: center;
-    justify-items: end;
-}
+
 .divLogo{
     width: 10%;
 }
 .teamDivisionMenu{
     display: flex !important;
     flex-wrap: wrap; /* Permet de passer à la ligne */
-    width: 800px; /* Largeur définie pour contenir 4 éléments par ligne */
+    width: 100%; /* Largeur définie pour contenir 4 éléments par ligne */
     list-style: none; /* Supprime les puces */
 }
 .teamDivisionMenu li {
@@ -497,6 +493,9 @@ header{
     /* --------------------- NavBar ----------------------------------- */
     .logoNavBAr{
         width: 70%;
+    }
+    .teamDivisionMenu{
+        width: 800px;
     }
     
     .nav-item.dropdown .dropdown-menu {
