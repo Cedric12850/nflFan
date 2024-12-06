@@ -1,0 +1,550 @@
+@import url();
+
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+    -webkit-font-smoothing: antialiased;
+    
+} 
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+*::first-letter {
+    text-transform: capitalize;
+}
+.container, body{
+    background-color: rgb(238, 238, 238);
+}
+
+/* ----------------------- General ----------------------------------- */
+a {
+    text-decoration: none;
+}
+/* End General */
+/* ----------------------- ADMIN ------------------------------------- */
+
+/*  End ADMIN */
+
+/* ----------------------- Footer ------------------------------------ */
+footer{
+    margin-top: 1rem;
+    padding: 1rem 3rem 1rem 2rem; 
+    background-color: rgba(1, 1, 31, 0.87);
+    color: white;
+}
+/* ----------------------- End Footer -------------------------------- */
+
+
+header{
+    background-color: white;
+}
+/* ----------------------- Navbar ------------------------------------ */
+
+.logoNavBAr{
+    width:100%;
+}
+.topMenu{
+    padding: 1rem 0.4rem 1rem 0.4rem; 
+    background-color: rgba(1, 1, 31, 0.87);
+    color: white;
+}
+.viewResultMatch {
+    padding: 0.3rem 0.4rem 0rem 0.4rem; 
+}
+.menuNavbar {
+    padding: 0rem 0.2rem 0rem 0.7rem; 
+}
+
+.divNavBar{
+    width: 100%;
+}
+
+.divLogo{
+    width: 10%;
+}
+.teamDivisionMenu{
+    display: flex !important;
+    flex-wrap: wrap; /* Permet de passer à la ligne */
+    width: 100%; /* Largeur définie pour contenir 4 éléments par ligne */
+    list-style: none; /* Supprime les puces */
+}
+.teamDivisionMenu li {
+    flex: 0 0 calc(25% - 10px); /* Chaque élément prend 25% moins une petite marge */
+    text-align: center; /* Centre le texte */
+}
+.divDivision{
+    width: 200px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    color: rgb(137, 137, 137);
+    font-weight: 500;
+    & div{
+        border-top: 1px solid rgb(137, 137, 137);
+    }
+    & li {
+        font-size: 0.75rem;
+        text-align: start;
+        padding: 0;
+    }
+}
+
+/* ----------------------- End Navbar -------------------------------- */
+
+
+
+/* ----------------------- Home Page -------------------------------- */
+.box_link_appli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box_link_appli img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+.link_appli_teams, .link_appli_players {
+    width: 100%;
+    text-align: center;
+    margin: 2%;
+}
+/* ------------------------- End Home Page ----------------------------- */
+
+
+/* ------------------------- All Team View --------------------------------- */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.teamCard{
+    margin: 0.5rem;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+.teamCardHeader>img{
+    width: 100%;
+}
+.teamLink {
+    text-decoration: none;
+    color: white;
+}
+/* -------------------------- End All Team View ---------------------------- */
+
+/* ------------------------- Team View Detail --------------------------------- */
+.teamDetailContainer {
+    width: 90%;
+    margin: auto;
+}
+.cardTeamDetail{
+    display: flex;
+    flex-wrap: wrap;
+}
+.detailTeam{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 56%;
+    padding: 2%;
+}
+.nameTeamDetail{
+    font-size: 1rem ;
+}
+
+.linkInfosStatsTeam{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    & ul>li{
+        list-style: none;
+        width: 25%;
+        height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid blue;
+    }
+}
+.liStatsTeam, .liInfosTeam{
+    background-color: white;
+}
+.liRoosterTeam, .liStatsTeam:hover, .liInfosTeam:hover{
+    background-color: blue;
+    color: white;
+}
+/* -------------------------- End Team View Detail ---------------------------- */
+
+
+/* -------------------------- Player View ------------------------------ */
+.playerView{
+    display: flex;
+    flex-wrap: wrap;
+}
+.playerCard {
+    width: 100%;
+    height: 450px;
+    background-color: transparent;
+    margin: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    z-index: 1;
+}
+.backgroundCardPlayer {
+    background-image: url('../../../media/card_backgroung.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    clip-path: polygon(0% 20%, 100% 10%, 100% 100%, 0% 100%);
+    position: absolute;
+    z-index: -1;
+    width: 90%; /* Réduction de la largeur */
+    height: 100%;
+    left: 5%; /* Centrage horizontal (90% de largeur + 5% de marge de chaque côté) */
+    
+}
+.player_stat_img {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    position: absolute;
+    top: 10% ;
+    padding-left: 3px;
+}
+
+.ranking_position {
+    display: flex;
+    flex-direction: column;
+    width:max-content;
+    height: 150px;
+    padding: 4px;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 2px 2px black;
+    & h6 {
+        font-size: 1.4rem;
+    }
+    &  h3 {
+        font-weight: 800;
+        font-size: 2.5rem;
+    }
+    & img {
+        width: 95%;
+    }
+}
+.player_card_body {
+    position: absolute;
+    bottom: 18%;
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2%;
+    text-shadow: 1px 2px 2px black;
+    font-style: italic;
+    & h6 {
+        font-size: 1.4rem;
+    }
+    &  h3 {
+        font-weight: 700;
+        font-size: 2rem;
+    }
+}
+.img_player{
+    position: relative;
+    left: -23%;
+}
+.crud_player{
+    position: absolute;
+    bottom: -3%;
+    left: 20%;
+    & h4 {
+        text-shadow: 1px 2px 2px black;
+        font-weight: 700;
+        font-size: 1.5rem;
+    } 
+}
+.logo_draft {
+    width: 35%;
+}
+.messages {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50; /* Vert pour les succès */
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1; /* Initialement complètement visible */
+    list-style: none;
+}
+.messages.error {
+    background-color: #f44336; /* Rouge pour les erreurs */
+}
+
+.messages.warning {
+    background-color: #ff9800; /* Orange pour les avertissements */
+}
+
+/* -------------------------- End Player View -------------------------- */
+
+/* -------------------------- PLayer Detail View ----------------------- */
+.playerDetailTopView {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    
+}
+.detailLeftTopView {
+    width: 60%;
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+    padding-left: 2%;
+    height: auto;
+    & h2 {
+        font-weight: 500;
+        margin-top: 2%;
+    }
+    & p {
+        font-weight: 500;
+        margin-bottom: 0;
+        font-size: 0.7rem;
+    }
+    & a {
+        font-weight: 500;
+        font-size: 0.7rem;
+    }
+}
+.playerStatus{
+    background-color: rgb(26, 177, 26);
+    width: fit-content;
+    margin-top: 1%;
+    padding: 0px 8px 3px 8px;
+    border-radius: 25px ;
+    color: white;
+    font-size:1rem;
+}
+.detailBackgroundColorTwo{
+    position: relative;
+    display: inline-block;
+    width: 2%;
+}
+.detailBackgroundColorOne{
+    position: relative;
+    display: inline-block;
+    width: 38%;
+}
+.detailBackgroundColorTwo::before{
+    z-index: 1;
+    content: "";
+    position: absolute;
+    left: -180%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    -webkit-transform: skewX(-10deg);
+    -moz-transform: skewX(-10deg);
+    -ms-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+}
+.detailBackgroundColorOne::before{
+    z-index: 1;
+    content: "";
+    position: absolute;
+    left: -10%;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    -webkit-transform: skewX(-10deg);
+    -moz-transform: skewX(-10deg);
+    -ms-transform: skewX(-10deg);
+    transform: skewX(-10deg);
+}
+.playerImgToDetails {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow:hidden;
+    z-index: 1;
+    left: -10%;
+}
+
+.InfosStatsContainer{
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+}
+.gridInfosStats{
+    padding-top: 4%;
+    padding-bottom: 4%;
+    width: auto;
+}
+.linkInfosStats{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    & ul>li{
+        list-style: none;
+        width: 40%;
+        height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid blue;
+    }
+}
+.liStats{
+    background-color: white;
+}
+.liInfos, .liStats:hover{
+    background-color: blue;
+    color: white;
+}
+.gridBlockPlayerInfo{
+    grid-template-columns: [viewport-start] 1fr [content-start] minmax(0, 1248px) [content-end] 1fr [viewport-end];
+    grid-template-rows: [row] 1fr;
+}
+.blockPlayerInfo{
+    display: grid;
+    grid-template-rows: [row] 1fr;
+    grid-template-columns: repeat(12, [col] minmax(0px, 110px));
+    grid-gap: calc(2.28571px + 1.78571vw);
+    width: 100%;
+    height: 300px;
+    background-color: rgb(238, 238, 238);
+}
+.cardinfoPLayer{
+    grid-column: span 12;
+    grid-column-end: auto;
+    background-color: white;
+}
+.crudPlayer {
+    margin-top: 2%;
+}
+
+/* -------------------------- End PLayer Detail View ------------------- */
+
+
+
+/* -------------------------- Responsive screen > 425px ----------------- */
+@media screen and (min-width: 425px) {
+    .img_player{
+        left: -8%;
+    }
+    .crud_player{
+        position: absolute;
+        bottom: -5%;
+    }
+}
+/* -------------------------- Responsive screen > 768px ----------------- */
+@media screen and (min-width: 768px) {
+    .teamCard{
+        width:46%
+    }
+    .playerCard {
+        width: 60%;
+        margin: auto;
+    }
+    .img_player{
+        left: 0%;
+    }
+    .link_appli_teams, .link_appli_players {
+        width: 60%;
+        
+    }
+}
+/* ------------------------- End Responsive screen > 768px -------------- */
+
+/* ------------------------- Responsive screen > 992px ------------------- */
+@media screen and (min-width: 992px) {
+    .teamCard{
+        width:30%
+    }
+
+    /* --------------------- NavBar ----------------------------------- */
+    .logoNavBAr{
+        width: 70%;
+    }
+    .teamDivisionMenu{
+        width: 800px;
+    }
+    
+    .nav-item.dropdown .dropdown-menu {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+    }
+    /* --------------------- End NavBar ------------------------------- */
+    /* --------------------- Home Page ----------------------------------- */
+    .link_appli_teams, .link_appli_players {
+        width: 40%;
+    }
+    /* ---------------------- End Home Page ------------------------------- */
+
+
+    .playerCard {
+        width: 40%;
+    }
+}
+/* -------------------------- End Responsive screen > 992px --------------- */
+
+/* -------------------------- Responsive screen > 1200px ------------------ */
+@media screen and (min-width: 1200px) {
+    .teamCard {
+        width: 14%
+    }
+    .playerCard {
+        width: 30%;
+    }
+    .playerCardDetail {
+        width: 50%;
+    }
+    .crud_player{
+        position: absolute;
+        bottom: -4%;
+    }
+}
+/* -------------------------- End Responsive screen > 1200px --------------- */
+
+/* ------------------------- View --------------------------------- */
+
+/* -------------------------- End View ---------------------------- */
