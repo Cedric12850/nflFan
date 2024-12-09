@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL weeks </h1>
+<article>
+    <h1>{{ message }}</h1>  <!-- Affiche le message personnalisé -->
+
+<p>Nombre de matchs : {{ playgame_count }}</p>  <!-- Affiche le nombre total de matchs -->
+
+<h2>Liste des matchs :</h2>
+<ul>
+    {% for playgame in playgames %}
+    {}
+        <li>
+            {{ playgame.team_local }} vs {{ playgame.team_visitor }} le {{ playgame.played_at }}
+        </li>
+    {% endfor %}
+</ul>
+</article>
+{% endblock %}

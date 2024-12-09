@@ -1,0 +1,80 @@
+<header>
+    <div class="topMenu d-flex justify-content-between">
+            <a class="nav-link " href="/admin">Admin</a>
+            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Connexion
+            </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/account">Mon compte</a></li>
+                    <li><a class="dropdown-item" href="/register">S'inscrire</a></li>
+                    <li><a class="dropdown-item" href="/login">Se connecter</a></li>  
+                    <li><a class="dropdown-item" href="/logout">Déconnexion</a></li> 
+                </ul>
+            
+    </div>
+
+
+    <div class="viewResultMatch">
+    {% for result in results %}
+        <div class="playGameCard">
+            <div>
+                <div class="vsPlayGame">
+                    {% for playgame in playgames %}
+                    <div class="team_local"> {{ playgame.team_local }}</div>
+                    <div class="bilan_team_local"></div>
+                </div>
+                <div class="is_week">weeks: </div>
+            </div>
+            <p> <img src="{{ result.team.thumbnail.url }}" alt="">{{result.team.town}} {{result.team.name}}: {{result.wins}} - {{result.losses}} </p>
+        </div>
+    {% endfor%}
+    </div>
+    <div class="menuNavbar row">
+        <nav class="navbar navbar-expand-lg row">
+            <div class="container-fluid divNavBar d-flex justify-content-between align-items-center col-12">
+                <div class="divLogo">
+                    <!-- div logo et nom de l'utilisateur connecté -->  
+                        <a class="navbar-brand " href="/"><img class="logoNavBAr" src="/media/nfl.svg" alt="Logo Nfl"></a>                
+                        <!-- <h6 class="ms-2 border bg-primary " id="isUser">user name</h6> -->
+                </div>
+                <div class="navBarBtn">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <!--  div avec le menu burger  -->
+                <div class="collapse navbar-collapse ms-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-self-end">
+                        <li class="nav-item">
+                            <a class=" nav-link active " aria-current="page" href="/">Accueil</a>
+                        </li>
+                        <!-- Team Item -->
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Team</a>
+                            <ul class="dropdown-menu " >
+                                <div class="teamDivisionMenu" id="navbar-divisions"></div>
+                            </ul>
+                        </li>
+
+                        <!-- Player Item -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Player
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'players_index' %}">Tous les joueurs</a></li>
+                                <li><a class="dropdown-item" href="/players/addplayer/">Ajouter de joueur</a></li>
+                                
+                              </ul>
+                        </li>     
+                    </ul> 
+                    <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                    </form> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+</header>

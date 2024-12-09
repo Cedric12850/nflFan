@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> NFL weeks </h1>
+<article>
+    {% for playgame in playgames %}
+    {playgame.team_local}
+    {% endfor %}
+</article>
+{% endblock %}

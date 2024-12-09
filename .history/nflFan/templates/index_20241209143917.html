@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<article class="box_link_appli">
+    <div class="link_appli_teams">
+        <a href="{% url 'teams_index' %}">
+            <img src="/media/nfl.svg" alt="lien vers toutes les équipes">
+        </a>
+    </div>
+    <div class="link_appli_players">
+        <a href="{% url 'players_index' %}">
+            <img src="/media/player_card.webp" alt="lien vers tous les joueurs">
+        </a>
+    </div>
+</article>
+
+<ul>
+{% for result in results %}
+<li>{{result.team.town}} {{result.team.name}}: {{result.wins}} - {{result.losses}}</li></p>
+{% endfor %}
+</ul>
+{% endblock %}
