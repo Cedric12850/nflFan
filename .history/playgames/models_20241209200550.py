@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.timezone import now
 
 from team.models import Teams
 
@@ -47,7 +46,7 @@ class PlayGame(models.Model):
         null=True,                   # Permet d'avoir des joueurs sans équipe
         blank=True,                  # Rend le champ facultatif dans les formulaires
     )
-    played_at = models.DateTimeField(default=now)
+    played_at = models.DateTimeField(default="2024-01-01")
     def __str__(self):
         return f"{self.team_local} vs {self.team_visitor} ({self.week})"
     
