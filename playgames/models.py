@@ -38,8 +38,8 @@ class PlayGame(models.Model):
         on_delete= models.CASCADE,
         related_name= 'visitor_playGames'
     )
-    score_local = models.IntegerField(default=0)
-    score_visitor = models.IntegerField(default=0)
+    score_local = models.IntegerField(null=True, blank=True )
+    score_visitor = models.IntegerField(null=True, blank=True)
     week = models.ForeignKey(
         Week,
         on_delete=models.CASCADE,

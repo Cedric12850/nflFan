@@ -10,7 +10,7 @@ class PlayGameAdmin(admin.ModelAdmin):
     list_display = ('team_local', 'team_visitor', 'week',  'played_at', 'score_local', 'score_visitor')
     list_filter = ('week__season', 'week', 'played_at')
     search_fields = ('team_local__name', 'team_visitor__name')
-    ordering = ('played_at',)
+    ordering = ('-played_at',)
     date_hierarchy = 'played_at'
     # Pagination (afficher 16 éléments par page)
     list_per_page = 16 

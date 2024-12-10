@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
+
+from playgames.forms import PlaygamesForm
 
 from .models import PlayGame
 
@@ -22,3 +25,9 @@ class PlaygameIndexVue(ListView):
         context['playgame_count'] = PlayGame.objects.count()  # Nombre total de matchs
         
         return context
+    
+class PlaygameCreateView(CreateView):
+    model = PlayGame
+    template_name = "playgames/addplaygame.html"
+    form_class = PlaygamesForm
+    success_url = reverse_lazy('playgames_index')

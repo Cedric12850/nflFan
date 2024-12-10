@@ -30,24 +30,28 @@
                     <div class="team-local">
                         <div>
                             <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
-                            <span class="bold-800">{{ enhanced_game.game.team_local.town|slice:"3"|upper }} 
-                                <!-- <span class="team_bilan">({{ enhanced_game.local_results.wins }} - {{ enhanced_game.local_results.losses }})</span> -->
-                            </span>
+                            <span class="bold-800">{{ enhanced_game.game.team_local.town|slice:"3"|upper }}</span>
                             
                         </div>
-                        <div class="info_score">{{ enhanced_game.game.score_local }}</div>
+                        {% if enhanced_game.game.score_local != null %}
+                            <div class="info_score">{{ enhanced_game.game.score_local }}</div>
+                        {% else %}
+                            <div class="info_score">{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
+                        {% endif %}
                     </div>
                     
                     <!-- Équipe visiteuse -->
                     <div class="team-visitor">
                         <div>
                             <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
-                            <span class="bold-800">{{ enhanced_game.game.team_visitor.town|slice:"3"|upper }}
-                                <!-- <span class="team_bilan">({{ enhanced_game.visitor_results.wins }} - {{ enhanced_game.visitor_results.losses }})</span> -->
-                            </span>
+                            <span class="bold-800">{{ enhanced_game.game.team_visitor.town|slice:"3"|upper }}</span>
                             
                         </div>
-                        <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
+                        {% if enhanced_game.game.score_visitor != null %}
+                            <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
+                        {% else %}
+                            <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
+                        {% endif %}
                     </div>
                     
                     <!-- Numéro de la semaine -->
@@ -94,8 +98,9 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'players_index' %}">Tous les joueurs</a></li>
                                 <li><a class="dropdown-item" href="/players/addplayer/">Ajouter de joueur</a></li>
-                                
                               </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="/playgames/addplaygame">Ajouter un match</a>
                         </li>     
                     </ul> 
                     <!-- <form class="d-flex" role="search">
