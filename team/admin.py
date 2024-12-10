@@ -9,17 +9,13 @@ admin.site.register(Conferences)
 
 class TeamsAdmin(admin.ModelAdmin):
     # Afficher des colonnes supplémentaires dans la liste des objets
-    list_display = ('name', 'town', 'division','owner', 'founded_year', 'stadium', 'colorOne', 'colorTwo')
-    
+    list_display = ('name', 'town','thumbnail', 'division','owner', 'founded_year', 'stadium', 'colorOne', 'colorTwo')
     # Ajout d'un champ de recherche
-    search_fields = ('name', 'town', 'stadium', 'division__name')
-    
+    search_fields = ('name', 'town', 'stadium', 'division__name') 
     # Ajout de filtres dans la barre latérale
     list_filter = ('division', )
-
     # Pagination (afficher 10 éléments par page)
-    list_per_page = 8  
-    
+    list_per_page = 8   
     # Organisation des champs dans le formulaire d'édition
     fieldsets = (
         ('Informations Générales', {
@@ -39,7 +35,6 @@ class TeamsAdmin(admin.ModelAdmin):
     def founded_year(self, obj):
         return obj.founded.year
     
-
     def thumbnail_preview(self, obj):
         if obj.thumbnail:
             return f'<img src="{obj.thumbnail.url}" style="width: 50px; height: 50px;" />'

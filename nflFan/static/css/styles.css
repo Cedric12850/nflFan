@@ -22,6 +22,12 @@ html {
 a {
     text-decoration: none;
 }
+.bold-800 {
+    font-weight: 800;
+}
+.bg-grey{
+    background-color: rgb(238, 238, 238);
+}
 /* End General */
 /* ----------------------- ADMIN ------------------------------------- */
 /*  End ADMIN */
@@ -43,7 +49,7 @@ header{
 .viewResultMatch {
     display: flex;
     overflow-x: auto;  /* Permet le défilement horizontal */
-    padding-top: 0.3rem;
+    margin: 0;
     padding-left: 0;
     width: 100%;  /* Assure que la largeur du conteneur reste limitée à l'écran */
     -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
@@ -51,15 +57,28 @@ header{
     box-sizing: border-box;
 }
 .liplayGameCard{
-    width: 33%;
+    width: 25%;
     flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
     list-style: none;
-    padding-left: 0.5rem;
-    padding-right: 0.3rem;
-    font-size: 0.7rem;
-    background-color: rgb(238, 238, 238);
+    font-size: 0.6rem;
+    background-color: rgb(247, 246, 246);
     border-left: 1px solid rgb(202, 202, 202);
 }
+.redzoneCard {
+    display: grid;
+    grid-template-rows: 67%;
+    width: 25%;
+    flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
+    list-style: none;
+    font-size: 0.6rem;
+    background-color: rgb(247, 246, 246);
+    border-left: 1px solid rgb(202, 202, 202);
+    align-items: center;
+    & .week{
+        grid-row: 3;
+    }
+}
+
 .playGame_team-info{
     display: flex;
     flex-direction: column;
@@ -68,10 +87,25 @@ header{
     display: flex;
     justify-content: space-between ;
     width:100%;
+    padding-left: 0.5rem;
+    padding-right: 0.3rem;
     & .info_score{
         display: flex;
         align-items: center;
     }
+    /* & .team_bilan{
+        font-size: 0.5rem;
+    } */
+}
+.week {
+    text-align: center;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    background-color: rgb(238, 238, 238);
+    color: grey;
+}
+.imgRedzoneNavBar{
+    width: 100%;
 }
 .imgTeamNavBar{
     width: 30%;
@@ -502,7 +536,7 @@ header{
         position: absolute;
         bottom: -5%;
     }
-    .liplayGameCard{
+    .liplayGameCard, .redzoneCard{
         width: 23%;
     }
 }
@@ -520,9 +554,8 @@ header{
     }
     .link_appli_teams, .link_appli_players {
         width: 60%;
-        
     }
-    .liplayGameCard{
+    .liplayGameCard, .redzoneCard{
         width: 18%;
     }
 }
@@ -552,7 +585,7 @@ header{
         display: block;
         opacity: 1;
     }
-    .liplayGameCard{
+    .liplayGameCard, .redzoneCard{
         width: 12%;
     }
     /* --------------------- End NavBar ------------------------------- */
@@ -584,13 +617,18 @@ header{
         position: absolute;
         bottom: -4%;
     }
-
-    .liplayGameCard{
+    .liplayGameCard, .redzoneCard{
         width: 10%;
     }
 }
 /* -------------------------- End Responsive screen > 1200px --------------- */
+/* -------------------------- Responsive screen > 1440px ------------------ */
+@media screen and (min-width: 1440px) {
+   
+    .liplayGameCard, .redzoneCard{
+        width: 5.5%;
+    }
+}
 
-/* ------------------------- View --------------------------------- */
 
-/* -------------------------- End View ---------------------------- */
+/* -------------------------- End Responsive screen > 1440px ------------------ */
