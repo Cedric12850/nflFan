@@ -21,6 +21,7 @@ html {
 /* ----------------------- General ----------------------------------- */
 a {
     text-decoration: none;
+    color: black;
 }
 .bold-800 {
     font-weight: 800;
@@ -44,6 +45,15 @@ footer{
 
 header{
     background-color: white;
+}
+.gamepassText{
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 800;
+    color: white;
+}
+.GP_hidden{
+    display: none;
 }
 /* ----------------------- Navbar ------------------------------------ */
 .viewResultMatch {
@@ -116,7 +126,7 @@ header{
     width:100%;
 }
 .topMenu{
-    padding: 1rem 0.4rem 1rem 0.4rem; 
+    padding: 1rem 3rem 1rem 1rem; 
     background-color: rgba(1, 1, 31, 0.87);
     color: white;
 }
@@ -543,6 +553,13 @@ header{
 }
 /* -------------------------- Responsive screen > 768px ----------------- */
 @media screen and (min-width: 768px) {
+    .topMenu{
+        padding: 1rem 4rem 1rem 4rem; 
+    }
+    .GP_hidden{
+        display: block;
+        visibility: visible;
+    }
     .teamCard{
         width:46%
     }

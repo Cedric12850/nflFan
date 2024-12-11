@@ -23,8 +23,9 @@ from nflFan import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('admin/', admin.site.urls),
     path('', include('team.urls')),
     path('', include('players.urls')),
     path('', include('playgames.urls')),
-    path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

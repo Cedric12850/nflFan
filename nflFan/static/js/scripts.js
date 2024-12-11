@@ -89,3 +89,42 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => console.error('Erreur lors du chargement des divisions :', error));
 })
+
+
+// Js pour récupérer les week by season
+document.addEventListener("DOMContentLoaded", function () {
+    const seasonSelect = document.getElementById("id_season");
+    const weekSelect = document.getElementById("id_week");
+
+    if (seasonSelect) {
+        seasonSelect.addEventListener("change", function () {
+            const seasonId = this.value;
+
+            if (seasonId) {
+                fetch(`/ajax/load-weeks/?season=${seasonId}`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        weekSelect.innerHTML = "";
+
+                        // Ajouter une option vide
+                        const emptyOption = document.createElement("option");
+                        emptyOption.textContent = "Sélectionnez une semaine";
+                        emptyOption.value = "";
+                        weekSelect.appendChild(emptyOption);
+
+                        // Ajouter les options de semaines
+                        data.forEach(function (week) {
+                            const option = document.createElement("option");
+                            option.value = week.id;
+                            option.textContent = `Semaine ${week.week_number}`;
+                            weekSelect.appendChild(option);
+                        });
+                    })
+                    .catch((error) => console.error("Erreur lors du chargement des semaines :", error));
+            } else {
+                // Si aucune saison n'est sélectionnée, vider le champ "week"
+                weekSelect.innerHTML = "";
+            }
+        });
+    }
+});

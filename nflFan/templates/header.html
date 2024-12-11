@@ -1,16 +1,17 @@
+{% load custom_filters %}
 <header>
     <div class="topMenu d-flex justify-content-between">
-            <a class="nav-link " href="/admin">Admin</a>
-            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Connexion
+        <div class="GP_hidden">
+            <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
+                <div>
+                    <img src="/media/gamepass_logo.svg" alt="logo game pass">
+                    <span class="gamepassText">watch every game with game pass</span>
+                </div>
             </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/account">Mon compte</a></li>
-                    <li><a class="dropdown-item" href="/register">S'inscrire</a></li>
-                    <li><a class="dropdown-item" href="/login">Se connecter</a></li>  
-                    <li><a class="dropdown-item" href="/logout">Déconnexion</a></li> 
-                </ul>
-            
+        </div>
+        <div>
+            <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank" class="gamepassText">game pass</a>
+        </div>
     </div>
 
     <div class="bg-grey">
@@ -24,42 +25,46 @@
                 </div>
             </li>
             {% for enhanced_game in latest_playgames %}
+           
             <li class="liplayGameCard">
-                <div class="playGame_team-info">
-                    <!-- Équipe locale -->
-                    <div class="team-local">
-                        <div>
-                            <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
-                            <span class="bold-800">{{ enhanced_game.game.team_local.town|slice:"3"|upper }}</span>
-                            
+                <a href="/playgames/{{ enhanced_game.game.id }}/edit">
+                    <div class="playGame_team-info">
+                        <!-- Équipe locale -->
+                        <div class="team-local">
+                            <div>
+                                <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
+                                <span class="bold-800">{{ enhanced_game.game.team_local.town|first_letters:enhanced_game.game.team_local.name }}</span>
+                                
+                            </div>
+                            {% if enhanced_game.game.score_local != null %}
+                                <div class="info_score">{{ enhanced_game.game.score_local }}</div>
+                            {% else %}
+                                <div class="info_score">{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
+                            {% endif %}
                         </div>
-                        {% if enhanced_game.game.score_local != null %}
-                            <div class="info_score">{{ enhanced_game.game.score_local }}</div>
-                        {% else %}
-                            <div class="info_score">{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Équipe visiteuse -->
-                    <div class="team-visitor">
-                        <div>
-                            <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
-                            <span class="bold-800">{{ enhanced_game.game.team_visitor.town|slice:"3"|upper }}</span>
-                            
+                        
+                        <!-- Équipe visiteuse -->
+                        <div class="team-visitor">
+                            <div>
+                                <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
+                                <span class="bold-800">{{ enhanced_game.game.team_visitor.town|first_letters:enhanced_game.game.team_visitor.name }}</span>
+                                
+                            </div>
+                            {% if enhanced_game.game.score_visitor != null %}
+                                <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
+                            {% else %}
+                                <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
+                            {% endif %}
                         </div>
-                        {% if enhanced_game.game.score_visitor != null %}
-                            <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
-                        {% else %}
-                            <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
-                        {% endif %}
-                    </div>
-                    
-                    <!-- Numéro de la semaine -->
-                    <div class="week bold-800">
-                        Week {{ latest_week_number }}
-                    </div>
-                </div> 
+                        
+                        <!-- Numéro de la semaine -->
+                        <div class="week bold-800">
+                            Week {{ latest_week_number }}
+                        </div>
+                    </div> 
+                </a>
             </li>
+            
             {% endfor %}
         </ul>
     </div>
@@ -97,11 +102,21 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'players_index' %}">Tous les joueurs</a></li>
+                                {% if user.is_superuser%}
                                 <li><a class="dropdown-item" href="/players/addplayer/">Ajouter de joueur</a></li>
+                                {% endif %}
                               </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link active" href="/playgames/addplaygame">Ajouter un match</a>
-                        </li>     
+                        {% if user.is_superuser%}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                match
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link active" href="/playgames/addplaygame">Ajouter un match</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}  
                     </ul> 
                     <!-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">

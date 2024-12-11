@@ -19,7 +19,10 @@ class Week(models.Model):
         on_delete=models.CASCADE,
         related_name="weeks"
     )
-    week_number = models.PositiveIntegerField()
+    week_number = models.PositiveIntegerField(
+        null=True,
+        blank=True
+    )
     is_playoff = models.BooleanField(default=False)
 
     def __str__(self):
