@@ -13,13 +13,17 @@ header{
 /* ----------------------- Navbar ------------------------------------ */
 .viewResultMatch {
     display: flex;
-    overflow-x: auto;  /* Permet le défilement horizontal */
+    overflow-x: scroll;  /* Permet le défilement horizontal */
     margin: 0;
     padding-left: 0;
     width: 100%;  /* Assure que la largeur du conteneur reste limitée à l'écran */
     -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
     white-space: nowrap;  /* Empêche le retour à la ligne des éléments dans la navbar */
     box-sizing: border-box;
+    overflow: hidden;
+}
+.viewResultMatch::-webkit-scrollbar{
+    display: none;
 }
 .liplayGameCard{
     width: 25%;

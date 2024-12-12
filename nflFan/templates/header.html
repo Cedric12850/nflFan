@@ -15,58 +15,66 @@
     </div>
 
     <div class="bg-grey">
-        <ul class="viewResultMatch">
-            <li class="redzoneCard">
+        <div class="d-f">
+            <div class="redzoneCard">
                 <div class="playGame_team-info gridRedzone">
                     <img class="imgRedzoneNavBar" src="/media/redzone.svg" alt="logo redzone">
                 </div>
                 <div class="week bold-800">
                     Sunday at 19:00
                 </div>
-            </li>
-            {% for enhanced_game in latest_playgames %}
-           
-            <li class="liplayGameCard">
-                <a href="/playgames/{{ enhanced_game.game.id }}/edit">
-                    <div class="playGame_team-info">
-                        <!-- Équipe locale -->
-                        <div class="team-local">
-                            <div>
-                                <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
-                                <span class="bold-800">{{ enhanced_game.game.team_local.town|first_letters:enhanced_game.game.team_local.name }}</span>
+            </div>
+            <div class="d-f">
+                <div>
+                    <button class="scroll-btn" id="scrollLeft" type="button"><i class="bi bi-chevron-right"></i></button>
+                </div>
+                <ul class="viewResultMatch">     
+                    {% for enhanced_game in latest_playgames %}
+                    <li class="liplayGameCard">
+                        <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
+                            <div class="playGame_team-info">
+                                <!-- Équipe locale -->
+                                <div class="team-local">
+                                    <div>
+                                        <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
+                                        <span class="bold-800">{{ enhanced_game.game.team_local.town|first_letters:enhanced_game.game.team_local.name }}</span>
+                                        
+                                    </div>
+                                    {% if enhanced_game.game.score_local != null %}
+                                        <div class="info_score">{{ enhanced_game.game.score_local }}</div>
+                                    {% else %}
+                                        <div class="info_score">{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
+                                    {% endif %}
+                                </div>
                                 
-                            </div>
-                            {% if enhanced_game.game.score_local != null %}
-                                <div class="info_score">{{ enhanced_game.game.score_local }}</div>
-                            {% else %}
-                                <div class="info_score">{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Équipe visiteuse -->
-                        <div class="team-visitor">
-                            <div>
-                                <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
-                                <span class="bold-800">{{ enhanced_game.game.team_visitor.town|first_letters:enhanced_game.game.team_visitor.name }}</span>
+                                <!-- Équipe visiteuse -->
+                                <div class="team-visitor">
+                                    <div>
+                                        <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
+                                        <span class="bold-800">{{ enhanced_game.game.team_visitor.town|first_letters:enhanced_game.game.team_visitor.name }}</span>
+                                        
+                                    </div>
+                                    {% if enhanced_game.game.score_visitor != null %}
+                                        <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
+                                    {% else %}
+                                        <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
+                                    {% endif %}
+                                </div>
                                 
-                            </div>
-                            {% if enhanced_game.game.score_visitor != null %}
-                                <div class="info_score">{{ enhanced_game.game.score_visitor }}</div>
-                            {% else %}
-                                <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
-                            {% endif %}
-                        </div>
-                        
-                        <!-- Numéro de la semaine -->
-                        <div class="week bold-800">
-                            Week {{ latest_week_number }}
-                        </div>
-                    </div> 
-                </a>
-            </li>
-            
-            {% endfor %}
-        </ul>
+                                <!-- Numéro de la semaine -->
+                                <div class="week bold-800">
+                                    Week {{ latest_week_number }}
+                                </div>
+                            </div> 
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div>
+                    <button class="scroll-btn"  id="scrollRight" type="button"><i class="bi bi-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="menuNavbar row">
         <nav class="navbar navbar-expand-lg row">
@@ -96,27 +104,14 @@
                         </li>
 
                         <!-- Player Item -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Player
+                        <li class="nav-item">
+                            <a class="nav-link active " href="{% url 'players_index' %}" aria-current="page">
+                            Players
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'players_index' %}">Tous les joueurs</a></li>
-                                {% if user.is_superuser%}
-                                <li><a class="dropdown-item" href="/players/addplayer/">Ajouter de joueur</a></li>
-                                {% endif %}
-                              </ul>
                         </li>
                         {% if user.is_superuser%}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                match
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link active" href="/playgames/addplaygame">Ajouter un match</a></li>
-                            </ul>
-                        </li>
-                        {% endif %}  
+                        <li class="nav-item"><a class="nav-link active" href="/players/addplayer/">Ajouter de joueur</a></li>
+                        {% endif %}
                     </ul> 
                     <!-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">

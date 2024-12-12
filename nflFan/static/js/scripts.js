@@ -128,3 +128,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Scroll button
+const buttonLeft = document.getElementById('scrollLeft');
+const buttonRight = document.getElementById('scrollRight');
+
+    buttonLeft.onclick = function (){
+        document.querySelector('.viewResultMatch').scrollLeft -=100;
+    };
+    buttonRight.onclick = function (){
+        document.querySelector('.viewResultMatch').scrollLeft +=100;
+    };

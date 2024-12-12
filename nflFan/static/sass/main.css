@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.scroll-btn {
+  height: 100%;
+  width: 25px;
+  border: none;
+}
+
 html {
   box-sizing: border-box;
   font-family: "roboto";
@@ -32,6 +38,10 @@ a {
   background-color: rgb(238, 238, 238);
 }
 
+.d-f {
+  display: flex;
+}
+
 header {
   background-color: white;
 }
@@ -50,13 +60,18 @@ header {
 /* ----------------------- Navbar ------------------------------------ */
 .viewResultMatch {
   display: flex;
-  overflow-x: auto; /* Permet le défilement horizontal */
+  overflow-x: scroll; /* Permet le défilement horizontal */
   margin: 0;
   padding-left: 0;
   width: 100%; /* Assure que la largeur du conteneur reste limitée à l'écran */
   -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
   white-space: nowrap; /* Empêche le retour à la ligne des éléments dans la navbar */
   box-sizing: border-box;
+  overflow: hidden;
+}
+
+.viewResultMatch::-webkit-scrollbar {
+  display: none;
 }
 
 .liplayGameCard {
@@ -652,6 +667,6 @@ footer {
 }
 @media screen and (min-width: 1440px) {
   .liplayGameCard, .redzoneCard {
-    width: 7%;
+    width: 8%;
   }
 }/*# sourceMappingURL=main.css.map */
