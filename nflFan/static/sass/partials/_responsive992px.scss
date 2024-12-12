@@ -21,7 +21,10 @@
         display: block;
         opacity: 1;
     }
-    .liplayGameCard, .redzoneCard{
+    .liplayGameCard {
+        width: 15%;
+    }
+    .redzoneCard{
         width: 12%;
     }
     /* --------------------- End NavBar ------------------------------- */

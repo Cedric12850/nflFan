@@ -40,6 +40,9 @@ a {
 
 .d-f {
   display: flex;
+  align-items: stretch; /* Aligne les éléments en hauteur */
+  overflow: hidden; /* Empêche le débordement horizontal du conteneur global */
+  width: 100%;
 }
 
 header {
@@ -67,7 +70,6 @@ header {
   -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
   white-space: nowrap; /* Empêche le retour à la ligne des éléments dans la navbar */
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .viewResultMatch::-webkit-scrollbar {
@@ -75,7 +77,7 @@ header {
 }
 
 .liplayGameCard {
-  width: 25%;
+  width: 50%;
   flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
   list-style: none;
   font-size: 0.6rem;
@@ -585,8 +587,11 @@ footer {
     position: absolute;
     bottom: -5%;
   }
-  .liplayGameCard, .redzoneCard {
-    width: 25%;
+  .liplayGameCard {
+    width: 34%;
+  }
+  .redzoneCard {
+    width: 22%;
   }
 }
 @media screen and (min-width: 768px) {
@@ -610,8 +615,11 @@ footer {
   .link_appli_teams, .link_appli_players {
     width: 60%;
   }
-  .liplayGameCard, .redzoneCard {
-    width: 18%;
+  .liplayGameCard {
+    width: 15%;
+  }
+  .redzoneCard {
+    width: 12%;
   }
 }
 @media screen and (min-width: 992px) {
@@ -634,7 +642,10 @@ footer {
     display: block;
     opacity: 1;
   }
-  .liplayGameCard, .redzoneCard {
+  .liplayGameCard {
+    width: 15%;
+  }
+  .redzoneCard {
     width: 12%;
   }
   /* --------------------- End NavBar ------------------------------- */
@@ -661,12 +672,18 @@ footer {
     position: absolute;
     bottom: -4%;
   }
-  .liplayGameCard, .redzoneCard {
+  .liplayGameCard {
+    width: 10%;
+  }
+  .redzoneCard {
     width: 10%;
   }
 }
 @media screen and (min-width: 1440px) {
-  .liplayGameCard, .redzoneCard {
+  .liplayGameCard {
+    width: 8%;
+  }
+  .redzoneCard {
     width: 8%;
   }
 }/*# sourceMappingURL=main.css.map */

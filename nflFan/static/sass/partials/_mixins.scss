@@ -28,4 +28,7 @@ a {
 }
 .d-f{
     display: flex;
+    align-items: stretch; /* Aligne les éléments en hauteur */
+    overflow: hidden; /* Empêche le débordement horizontal du conteneur global */
+    width: 100%;
 }

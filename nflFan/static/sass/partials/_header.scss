@@ -20,13 +20,12 @@ header{
     -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
     white-space: nowrap;  /* Empêche le retour à la ligne des éléments dans la navbar */
     box-sizing: border-box;
-    overflow: hidden;
 }
 .viewResultMatch::-webkit-scrollbar{
     display: none;
 }
 .liplayGameCard{
-    width: 25%;
+    width: 50%;
     flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
     list-style: none;
     font-size: 0.6rem;
