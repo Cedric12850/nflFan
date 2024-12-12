@@ -1,0 +1,18 @@
+@media screen and (min-width: 1200px) {
+    .teamCard {
+        width: 14%
+    }
+    .playerCard {
+        width: 30%;
+    }
+    .playerCardDetail {
+        width: 50%;
+    }
+    .crud_player{
+        position: absolute;
+        bottom: -4%;
+    }
+    .liplayGameCard, .redzoneCard{
+        width: 10%;
+    }
+}

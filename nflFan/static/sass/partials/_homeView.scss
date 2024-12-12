@@ -1,0 +1,18 @@
+/* ----------------------- Home Page -------------------------------- */
+.box_link_appli {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box_link_appli img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    
+}
+
+.link_appli_teams, .link_appli_players {
+    width: 100%;
+    text-align: center;
+    margin: 2%;
+}

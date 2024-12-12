@@ -1,0 +1,28 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+    -webkit-font-smoothing: antialiased;
+    
+} 
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+*::first-letter {
+    text-transform: capitalize;
+}
+.container, body{
+    background-color: rgb(238, 238, 238);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+.bold-800 {
+    font-weight: 800;
+}
+.bg-grey{
+    background-color: rgb(238, 238, 238);
+}
