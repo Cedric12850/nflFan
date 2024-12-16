@@ -19,6 +19,53 @@
   border: none;
 }
 
+/* Styles pour le bouton interrupteur */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* Quand le bouton est "on" (activé) */
+input:checked + .slider {
+  background-color: #0616f7;
+}
+
+input:checked + .slider:before {
+  transform: translateX(13px);
+}
+
 html {
   box-sizing: border-box;
   font-family: "roboto";
@@ -448,15 +495,20 @@ footer {
 }
 
 .playerImgToDetails {
-  width: 75%;
+  width: 150%;
   height: auto;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  left: -30%;
-  top: 10%;
+  left: -35%;
+  top: 13%;
 }
 
+@media screen and (min-width: 375px) {
+  .playerImgToDetails {
+    width: 127%;
+  }
+}
 .InfosStatsContainer {
   background-color: rgb(238, 238, 238);
   margin: 0;
@@ -588,6 +640,16 @@ footer {
   color: white;
 }
 
+.teamImgToDetails {
+  width: 75%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  left: -30%;
+  top: 10%;
+}
+
 /* -------------------------- End Team View Detail ---------------------------- */
 @media screen and (min-width: 425px) {
   .img_player {
@@ -626,6 +688,9 @@ footer {
     height: 220px;
   }
   .playerImgToDetails {
+    width: 101%;
+  }
+  .teamImgToDetails {
     width: 60%;
   }
   .img_player {
@@ -679,6 +744,9 @@ footer {
   .playerCard {
     width: 40%;
   }
+  .playerImgToDetails {
+    width: 85.5%;
+  }
 }
 @media screen and (min-width: 1200px) {
   .teamCard {
@@ -700,7 +768,7 @@ footer {
   .redzoneCard {
     width: 10%;
   }
-  .playerImgToDetails {
+  .teamImgToDetails {
     top: 2%;
     width: 50%;
   }
@@ -711,5 +779,8 @@ footer {
   }
   .redzoneCard {
     width: 8%;
+  }
+  .playerImgToDetails {
+    width: 62%;
   }
 }/*# sourceMappingURL=main.css.map */

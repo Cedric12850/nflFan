@@ -1,0 +1,137 @@
+{% load custom_filters %}
+<header>
+    <div class="topMenu d-flex justify-content-between">
+        <div class="GP_hidden">
+            <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
+                <div>
+                    <img src="/media/gamepass_logo.svg" alt="logo game pass">
+                    <span class="gamepassText">watch every game with game pass</span>
+                </div>
+            </a>
+        </div>
+        <div>
+            <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank" class="gamepassText">game pass</a>
+        </div>
+    </div>
+
+    <div class="bg-grey">
+        <div class="d-f">
+            <div class="redzoneCard">
+                <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
+                <div class="playGame_team-info gridRedzone">
+                    <img class="imgRedzoneNavBar" src="/media/redzone.svg" alt="logo redzone">
+                </div></a>
+                <div class="week bold-800">
+                    Sunday at 19:00
+                </div>
+                
+            </div>
+            <div class="d-f">
+                <div>
+                    <button class="scroll-btn" id="scrollLeft" type="button"><i class="bi bi-chevron-left"></i></button>
+                </div>
+                <ul class="viewResultMatch">     
+                    {% for enhanced_game in latest_playgames %}
+                    <li class="liplayGameCard">
+                        <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
+                            <div class="playGame_team-info">
+                                <!-- Équipe locale -->
+                                <div class="team-local">
+                                    <div>
+                                        <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_local.thumbnail.url }}" alt="{{ enhanced_game.game.team_local.name }}">
+                                        <span class="bold-800">{{ enhanced_game.game.team_local.town|first_letters:enhanced_game.game.team_local.name }}</span>
+                                        
+                                    </div>
+                                    {% if enhanced_game.game.score_local != null %}
+                                        <div class="info_score" id="blurScore">{{ enhanced_game.game.score_local }}</div>
+                                    {% else %}
+                                        <div class="info_score" >{{ enhanced_game.local_results.wins }}-{{ enhanced_game.local_results.losses }}</div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Équipe visiteuse -->
+                                <div class="team-visitor">
+                                    <div>
+                                        <img class="imgTeamNavBar" src="{{ enhanced_game.game.team_visitor.thumbnail.url }}" alt="{{ enhanced_game.game.team_visitor.name }}">
+                                        <span class="bold-800">{{ enhanced_game.game.team_visitor.town|first_letters:enhanced_game.game.team_visitor.name }}</span>
+                                        
+                                    </div>
+                                    {% if enhanced_game.game.score_visitor != null %}
+                                        <div class="info_score" id="blurScore">{{ enhanced_game.game.score_visitor }}</div>
+                                    {% else %}
+                                        <div class="info_score">{{ enhanced_game.visitor_results.wins }}-{{ enhanced_game.visitor_results.losses }}</div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Numéro de la semaine -->
+                                <div class="week bold-800">
+                                    Week {{ latest_week_number }}
+                                </div>
+                            </div> 
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div>
+                    if
+                    <button class="scroll-btn"  id="scrollRight" type="button"><i class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="menuNavbar row">
+        <nav class="navbar navbar-expand-lg row">
+            <div class="container-fluid divNavBar d-flex justify-content-between align-items-center col-12">
+                <div class="divLogo">
+                    <!-- div logo et nom de l'utilisateur connecté -->  
+                        <a class="navbar-brand " href="/"><img class="logoNavBAr" src="/media/nfl.svg" alt="Logo Nfl"></a>                
+                        <!-- <h6 class="ms-2 border bg-primary " id="isUser">user name</h6> -->
+                </div>
+                <div class="navBarBtn">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa-solid fa-football"></i>
+                    </button>
+                </div>
+                <!--  div avec le menu burger  -->
+                <div class="collapse navbar-collapse ms-3" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-self-end">
+                        <li class="nav-item">
+                            <a class=" nav-link active " aria-current="page" href="/">Accueil</a>
+                        </li>
+                        <!-- Team Item -->
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Team</a>
+                            <ul class="dropdown-menu " >
+                                <div class="teamDivisionMenu" id="navbar-divisions"></div>
+                            </ul>
+                        </li>
+
+                        <!-- Player Item -->
+                        <li class="nav-item">
+                            <a class="nav-link active " href="{% url 'players_index' %}" aria-current="page">
+                            Players
+                            </a>
+                        </li>
+                        {% if user.is_superuser%}
+                        <li class="nav-item"><a class="nav-link active" href="/players/addplayer/">Ajouter de joueur</a></li>
+                        {% endif %}
+                    </ul>
+                    <div>
+                        <div>score</div>
+                        <div>
+                                <label class="switch">
+                                    <input type="checkbox" id="blurEffect">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Rechercher</button>
+                    </form> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+</header>

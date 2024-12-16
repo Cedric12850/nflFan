@@ -1,0 +1,16 @@
+
+
+
+<h1>
+    {% if user %}
+        Modifier l'utilisateur
+    {% else %}
+        Créer un utilisateur
+    {% endif %}
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+<a href="{% url 'user:user_list' %}">Retour</a>

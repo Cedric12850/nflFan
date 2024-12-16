@@ -1,0 +1,12 @@
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+# Create your views here.
+
+class UserListView(ListView):
+    model = User
+    template_name = 'user/user_list.html'
+    context_object_name

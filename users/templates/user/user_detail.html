@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1>Détails de l'utilisateur</h1>
+<p><strong>Nom d'utilisateur :</strong> {{ user.username }}</p>
+<p><strong>Email :</strong> {{ user.email }}</p>
+<p><strong>Prénom :</strong> {{ user.first_name }}</p>
+<p><strong>Nom :</strong> {{ user.last_name }}</p>
+<p><strong>Staff :</strong> {{ user.is_staff }}</p>
+<p><strong>Actif :</strong> {{ user.is_active }}</p>
+<a href="{% url 'user_update' user.id %}">Modifier</a>
+<a href="{% url 'user_delete' user.id %}">Supprimer</a>
+{% endblock %}
