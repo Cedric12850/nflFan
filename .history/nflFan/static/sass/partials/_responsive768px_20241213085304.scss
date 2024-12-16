@@ -1,0 +1,31 @@
+@media screen and (min-width: 768px) {
+    .topMenu{
+        padding: 1rem 4rem 1rem 4rem; 
+    }
+    .GP_hidden{
+        display: block;
+        visibility: visible;
+    }
+    .teamCard{
+        width:46%
+    }
+    .playerCard {
+        width: 60%;
+        margin: auto;
+    }
+    .img_player{
+        left: 0%;
+    }
+    .link_appli_teams, .link_appli_players {
+        width: 60%;
+    }
+    .liplayGameCard {
+        width: 15%;
+    }
+    .redzoneCard{
+        width: 12%;
+    }
+    .divNavBar{
+        width: 80%;
+    }
+}

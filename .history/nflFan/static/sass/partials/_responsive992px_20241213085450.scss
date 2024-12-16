@@ -1,0 +1,42 @@
+@media screen and (min-width: 992px) {
+    .teamCard{
+        width:30%
+    }
+
+    /* --------------------- NavBar ----------------------------------- */
+    .logoNavBAr{
+        width: 70%;
+    }
+    .teamDivisionMenu{
+        width: 800px;
+    }
+    
+    .nav-item.dropdown .dropdown-menu {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-item.dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+    }
+    .liplayGameCard {
+        width: 15%;
+    }
+    .redzoneCard{
+        width: 12%;
+    }
+    
+    /* --------------------- End NavBar ------------------------------- */
+    /* --------------------- Home Page ----------------------------------- */
+    .link_appli_teams, .link_appli_players {
+        width: 40%;
+    }
+    /* ---------------------- End Home Page ------------------------------- */
+
+
+    .playerCard {
+        width: 40%;
+    }
+}

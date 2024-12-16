@@ -1,0 +1,56 @@
+/* ------------------------- All Team View --------------------------------- */
+.teamView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.teamCard{
+    margin: 0.5rem;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+}
+.teamCardHeader>img{
+    width: 100%;
+}
+.teamLink {
+    text-decoration: none;
+    color: white;
+}
+/* -------------------------- End All Team View ---------------------------- */
+
+/* ------------------------- Team View Detail --------------------------------- */
+.nameTeamDetail{
+    font-size: 3rem ;
+    font-weight: 400;
+}
+
+.linkInfosStatsTeam{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+    }
+    & ul>li{
+        list-style: none;
+        width: 25%;
+        height: 30px;
+        text-align: center;
+        text-transform: uppercase;
+        border: 1px solid blue;
+    }
+}
+.liStatsTeam, .liInfosTeam{
+    background-color: white;
+}
+.liRoosterTeam, .liStatsTeam:hover, .liInfosTeam:hover{
+    background-color: blue;
+    color: white;
+}
+/* -------------------------- End Team View Detail ---------------------------- */

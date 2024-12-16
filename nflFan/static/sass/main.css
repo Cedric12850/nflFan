@@ -1,7 +1,21 @@
 @charset "UTF-8";
+.btn {
+  background-color: white;
+  padding-top: 1px;
+  color: blue;
+}
+
+.btn > span {
+  font-size: 0.8rem;
+}
+
 .scroll-btn {
   height: 100%;
   width: 25px;
+  border: none;
+}
+
+.navbar-toggler {
   border: none;
 }
 
@@ -138,10 +152,6 @@ header {
   height: auto;
 }
 
-.logoNavBAr {
-  width: 100%;
-}
-
 .topMenu {
   padding: 1rem 3rem 1rem 1rem;
   background-color: rgba(1, 1, 31, 0.87);
@@ -150,6 +160,7 @@ header {
 
 .menuNavbar {
   padding: 0rem 0.2rem 0rem 0.7rem;
+  margin-left: 5%;
 }
 
 .divNavBar {
@@ -157,7 +168,16 @@ header {
 }
 
 .divLogo {
-  width: 10%;
+  justify-content: center; /* Centrer horizontalement si nécessaire */
+  height: 40px; /* Hauteur du conteneur */
+  width: auto; /* Ajuste automatiquement la largeur */
+}
+
+.logoNavBAr {
+  max-width: 100%; /* Ne dépasse jamais la largeur du conteneur */
+  max-height: 100%; /* Ne dépasse jamais la hauteur du conteneur */
+  -o-object-fit: contain;
+     object-fit: contain; /* Permet de voir l'image en entier sans la couper */
 }
 
 .teamDivisionMenu {
@@ -355,6 +375,7 @@ footer {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: 140px;
 }
 
 .detailLeftTopView {
@@ -362,6 +383,7 @@ footer {
   background-color: rgb(238, 238, 238);
   margin: 0;
   padding-left: 2%;
+  padding-top: 5%;
   height: auto;
 }
 .detailLeftTopView h2 {
@@ -426,12 +448,13 @@ footer {
 }
 
 .playerImgToDetails {
-  width: 100%;
-  height: 100%;
+  width: 75%;
+  height: auto;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  left: -10%;
+  left: -30%;
+  top: 10%;
 }
 
 .InfosStatsContainer {
@@ -526,26 +549,13 @@ footer {
 
 /* -------------------------- End All Team View ---------------------------- */
 /* ------------------------- Team View Detail --------------------------------- */
-.teamDetailContainer {
-  width: 90%;
-  margin: auto;
-}
-
-.cardTeamDetail {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.detailTeam {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 56%;
-  padding: 2%;
-}
-
 .nameTeamDetail {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.teamBilan, .teamDivision {
+  font-size: 0.8rem;
 }
 
 .linkInfosStatsTeam {
@@ -593,6 +603,9 @@ footer {
   .redzoneCard {
     width: 22%;
   }
+  .playerDetailTopView {
+    height: 160px;
+  }
 }
 @media screen and (min-width: 768px) {
   .topMenu {
@@ -608,6 +621,12 @@ footer {
   .playerCard {
     width: 60%;
     margin: auto;
+  }
+  .playerDetailTopView {
+    height: 220px;
+  }
+  .playerImgToDetails {
+    width: 60%;
   }
   .img_player {
     left: 0%;
@@ -654,6 +673,9 @@ footer {
     width: 40%;
   }
   /* ---------------------- End Home Page ------------------------------- */
+  .playerDetailTopView {
+    height: 250px;
+  }
   .playerCard {
     width: 40%;
   }
@@ -678,10 +700,14 @@ footer {
   .redzoneCard {
     width: 10%;
   }
+  .playerImgToDetails {
+    top: 2%;
+    width: 50%;
+  }
 }
 @media screen and (min-width: 1440px) {
   .liplayGameCard {
-    width: 8%;
+    width: 7%;
   }
   .redzoneCard {
     width: 8%;

@@ -1,0 +1,130 @@
+header{
+    background-color: white;
+}
+.gamepassText{
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 800;
+    color: white;
+}
+.GP_hidden{
+    display: none;
+}
+/* ----------------------- Navbar ------------------------------------ */
+.viewResultMatch {
+    display: flex;
+    overflow-x: scroll;  /* Permet le défilement horizontal */
+    margin: 0;
+    padding-left: 0;
+    width: 100%;  /* Assure que la largeur du conteneur reste limitée à l'écran */
+    -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+    white-space: nowrap;  /* Empêche le retour à la ligne des éléments dans la navbar */
+    box-sizing: border-box;
+}
+.viewResultMatch::-webkit-scrollbar{
+    display: none;
+}
+.liplayGameCard{
+    width: 50%;
+    flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
+    list-style: none;
+    font-size: 0.6rem;
+    background-color: rgb(247, 246, 246);
+    border-left: 1px solid rgb(202, 202, 202);
+}
+.redzoneCard {
+    display: grid;
+    grid-template-rows: 67%;
+    width: 25%;
+    flex: 0 0 auto; /* Empêche les éléments de se redimensionner */
+    list-style: none;
+    font-size: 0.6rem;
+    background-color: rgb(247, 246, 246);
+    border-left: 1px solid rgb(202, 202, 202);
+    align-items: center;
+    & .week{
+        grid-row: 3;
+    }
+}
+
+.playGame_team-info{
+    display: flex;
+    flex-direction: column;
+}
+.team-local, .team-visitor {
+    display: flex;
+    justify-content: space-between ;
+    width:100%;
+    padding-left: 0.5rem;
+    padding-right: 0.3rem;
+    & .info_score{
+        display: flex;
+        align-items: center;
+    }
+    /* & .team_bilan{
+        font-size: 0.5rem;
+    } */
+}
+.week {
+    text-align: center;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    text-transform: uppercase;
+    background-color: rgb(238, 238, 238);
+    color: grey;
+}
+.imgRedzoneNavBar{
+    width: 100%;
+}
+.imgTeamNavBar{
+    width: 30%;
+    height: auto;
+}
+.logoNavBAr{
+    width:100%;
+}
+.topMenu{
+    padding: 1rem 3rem 1rem 1rem; 
+    background-color: rgba(1, 1, 31, 0.87);
+    color: white;
+}
+
+.menuNavbar {
+    padding: 0rem 0.2rem 0rem 0.7rem;
+    margin-left: ;
+    width: 75%;
+}
+
+.divNavBar{
+    width: 100%;
+}
+
+.divLogo{
+    width: 10%;
+}
+.teamDivisionMenu{
+    display: flex !important;
+    flex-wrap: wrap; /* Permet de passer à la ligne */
+    width: 100%; /* Largeur définie pour contenir 4 éléments par ligne */
+    list-style: none; /* Supprime les puces */
+}
+.teamDivisionMenu li {
+    flex: 0 0 calc(25% - 10px); /* Chaque élément prend 25% moins une petite marge */
+    text-align: center; /* Centre le texte */
+}
+.divDivision{
+    width: 200px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    color: rgb(137, 137, 137);
+    font-weight: 500;
+    & div{
+        border-top: 1px solid rgb(137, 137, 137);
+    }
+    & li {
+        font-size: 0.75rem;
+        text-align: start;
+        padding: 0;
+    }
+}

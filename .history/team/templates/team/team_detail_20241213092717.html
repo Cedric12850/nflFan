@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="playerdetailpage">
+
+    <article class="playerDetailTopView">
+        <div class="detailLeftTopView">
+            <div><h2 class="nameTeamDetail"> {{ team.name}} {{ team.town}} </h2> </div>
+            <div></div>
+            <div></div>
+              
+            
+            <div class="">
+                <a href="https://europe.nflshop.com/fr/{{team.town}}-{{team.name}}" target="_blank"><button class="btn btn-primary"><i class="bi bi-cart4"></i> Shop</button></a>
+            </div>
+        </div>
+        <!-- div for css background -->
+        <div class="detailBackgroundColorTwo detailbackgroundteamColorTwo-{{team.id}}"></div>
+        <div class="detailBackgroundColorOne detailbackgroundteamColorOne-{{team.id}}"><img class="playerImgToDetails"  src="{{ team.thumbnail.url }}" alt=""></div>
+    </article>
+
+    <article class="InfosStatsContainer">
+        <div class="gridInfosStats">
+            <div class="linkInfosStatsTeam">
+                <ul>
+                    <li class="liInfosTeam">Info</li>
+                    <li class="liRoosterTeam">Rooster</li>
+                    <li class="liStatsTeam">Stats</li>
+                </ul>
+            </div>
+        </div>
+    </article>
+
+    <article class="gridBlockPLayerInfo">
+        <div class="blockPlayerInfo">
+            <div class="cardinfoPLayer">
+                <article>
+                    <div class="headerBoxPlayerInfo">
+                        <h4>Team infos</h4>
+                    </div>
+                    <div class="contentBoxPLayerInfo">
+                        <div class="physicalPlayerInfo">
+                            <p>Franchise créée en {{ team.founded|date:"Y"}}</p>
+                            <h5>Propriétaire: <span>{{ team.owner}}</span></h5>
+                        </div>
+                        <div class="experiencePlayerInfo">
+                            <h5>Stade:</h5>
+                            <p>{{ team.stadium}}</p>
+                            <img src="{{ team.stadium.thumbnail.url}}" alt="{{ team.stadium }}">
+                            <p>{{ team.stadium.creation}}</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </article>
+
+    <article class="crudPlayer">
+        <a href="{% url 'team_detail_edit' team.pk %}">
+            <button class="btn btn-primary" type="button">Modifier</button>
+        </a>
+       
+    </article>
+</section>
+
+<a href="{% url 'teams_index' %}">Retour</a>
+
+{% endblock %}
