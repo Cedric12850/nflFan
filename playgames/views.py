@@ -1,16 +1,16 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
+from itertools import groupby
+from operator import attrgetter
 from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
 
 from playgames.forms import PlaygamesForm
 
-from .models import PlayGame, Week
+from .models import PlayGame, Season, Week
 
 
 # Create your views here.
-def playgames_index(request):
-    return render(request, 'playgamesindex.html')
 
 class PlaygameIndexVue(ListView):
     model = PlayGame
@@ -21,11 +21,38 @@ class PlaygameIndexVue(ListView):
         # Appel de la méthode parent pour récupérer le contexte par défaut
         context = super().get_context_data(**kwargs)
         
-        # Ajouter des informations supplémentaires au contexte
+         # Ajouter les saisons pour le premier select
+        context['seasons'] = Season.objects.all()
+        
+        # Récupérer les paramètres GET pour la saison et la semaine
+        selected_season_id = self.request.GET.get('season_id')
+        selected_week_id = self.request.GET.get('week_id')
+
+        # Initialiser les variables
+        weeks = None
+        grouped_playgames = None
+
+        # Si une saison est sélectionnée, récupérer les semaines associées
+        if selected_season_id:
+            weeks = Week.objects.filter(season_id=selected_season_id)
+            context['selected_season_id'] = int(selected_season_id)
+            context['weeks'] = weeks
+
+        # Si une semaine est sélectionnée, récupérer les matchs associés
+        if selected_week_id:
+            playgames = PlayGame.objects.filter(week_id=selected_week_id).order_by('played_at')
+            grouped_playgames = {
+                date: list(games) for date, games in groupby(playgames, attrgetter('played_at'))
+            }
+            context['selected_week_id'] = int(selected_week_id)
+            context['grouped_playgames'] = grouped_playgames
+
+        # Ajouter d'autres informations supplémentaires
         context['message'] = "Bienvenue sur la page des matchs!"
         context['playgame_count'] = PlayGame.objects.count()  # Nombre total de matchs
         
         return context
+    
     
 class PlaygameCreateView(CreateView):
     model = PlayGame

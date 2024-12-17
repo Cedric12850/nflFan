@@ -15,7 +15,7 @@
     </div>
 
     <div class="bg-grey">
-        <div class="d-f">
+        <div class="flex align-i">
             <div class="redzoneCard">
                 <a href="https://www.dazn.com/en-FR/l/nfl-game-pass/" target="_blank">
                 <div class="playGame_team-info gridRedzone">
@@ -26,7 +26,7 @@
                 </div>
                 
             </div>
-            <div class="d-f">
+            <div class="flex align-i">
                 <div>
                     <button class="scroll-btn" id="scrollLeft" type="button"><i class="bi bi-chevron-left"></i></button>
                 </div>
@@ -80,7 +80,7 @@
     </div>
     <div class="menuNavbar row">
         <nav class="navbar navbar-expand-lg row">
-            <div class="container-fluid divNavBar d-flex justify-content-between align-items-center col-12">
+            <div class="container-fluid divNavBar align-ilex justify-content-between align-items-center col-12">
                 <div class="divLogo">
                     <!-- div logo et nom de l'utilisateur connecté -->  
                         <a class="navbar-brand " href="/"><img class="logoNavBAr" src="/media/nfl.svg" alt="Logo Nfl"></a>                
@@ -114,31 +114,58 @@
                         {% if user.is_superuser%}
                         <li class="nav-item"><a class="nav-link active" href="/players/addplayer/">Ajouter de joueur</a></li>
                         {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link active " href="{% url 'playgames_index' %}" aria-current="page">
+                            Match
+                            </a>
+                        </li>
                     </ul>
-                    <div>
-                        {% if user.is_authenticated %}
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit">Se déconnecter</button>
-                        </form>
-                        <div>score</div>
-                        <div>
-                            <label class="switch">
+                    <div class="btn-group">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-fill"></i>
+                        </button>
+                      
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                            <li class="ms-3">
+                                score
+                                <label class="switch">
                                 <input type="checkbox" id="blurEffect">
                                 <span class="slider"></span>
-                                </label>   
+                                </label>  
+                            </li>
+                        {% if user.is_authenticated %}
+                            <li>
+                                <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="btn " type="submit">Se déconnecter</button>
+                                </form>
+                            </li>
+                            <li class="ms-3">
+                                <a class="nav-link active " href="{% url 'user_detail' pk=user.pk %}" aria-current="page">Mon Profil</a>
+                            {% else %}
+                                <a class="nav-link active " href="{% url 'user_create' %}" aria-current="page">sign up</a>
+                                <a href="{% url 'login' %}">Sign in</a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div>
+                        
+                        
+                        <div></div>
+                        <div>
+                             
                         </div>
                         <div>
-                            <a class="nav-link active " href="{% url 'user_detail' pk=user.pk %}" aria-current="page">Mon Profil</a>
+                            
                         </div>
-                        {% else %}
+                        
                         <div>
-                            <a class="nav-link active " href="{% url 'user_create' %}" aria-current="page">sign up</a>
-                            <a href="{% url 'login' %}">Sign in</a>
+                            
                         </div>
                         {% endif %}
                         </div>
-                    <!-- <form class="d-flex" role="search">
+                    <!-- <form class="flex align-ilex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>
                     </form> -->

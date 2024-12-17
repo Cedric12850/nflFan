@@ -99,11 +99,22 @@ a {
   background-color: rgb(238, 238, 238);
 }
 
-.d-f {
-  display: flex;
+.align-i {
   align-items: stretch; /* Aligne les éléments en hauteur */
   overflow: hidden; /* Empêche le débordement horizontal du conteneur global */
   width: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.flex-end {
+  justify-content: flex-end;
 }
 
 header {

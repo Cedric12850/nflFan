@@ -21,8 +21,8 @@ def get_playgame_data():
     end_of_week = end_of_week.date()
 
     # Afficher les dates pour debug
-    print(f"Début de la semaine NFL : {start_of_week}")
-    print(f"Fin de la semaine NFL : {end_of_week}")
+    # print(f"Début de la semaine NFL : {start_of_week}")
+    # print(f"Fin de la semaine NFL : {end_of_week}")
 
     # Organisation des matchs par semaine
     playgames_by_week = defaultdict(list)
