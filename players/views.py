@@ -1,8 +1,10 @@
+from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
+from numpy import number
 
 from players.filters import PLayersFilter
 from players.forms import PlayerForm
@@ -11,32 +13,56 @@ from team.models import Teams
 
 
 # Vue pour afficher tous les joueurs de la BdD et les filtrer dans la recherche
-def players_index (request):
-    players = PLayers.objects.all()
-    for player in players:
-        player.team = Teams.objects.get(id=player.team_id)
-    player_filter = PLayersFilter(request.GET, queryset=players)
-    context = {
-        'filter': player_filter,  # Pour le formulaire de filtre
-        'players': player_filter.qs,  # Résultats filtrés
-    }
-    return render(request, 'players/index.html', context)
+class PlayerListView(ListView):
+    model = PLayers
+    template_name = 'players/index.html'
+    context_object_name = 'players'
+    paginate_by = 6
 
-# Vue pour ajoutter un joueur dans la BdD
-def addplayer(request):
-    if request.method == "POST":
-        form = PlayerForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Joueur ajouté avec succès à la base de données.")
-            return redirect('/players/')
-        else:
-            return render(request, 'players/addplayer.html', {"form": form, "errors": form.errors})
-    else:
-        form = PlayerForm()
-             
-    return render(request, "players/addplayer.html", {"form": form})
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('search', None)
+        if search_query:
+            queryset = queryset.filter(
+                Q(name__icontains=search_query) |  # Recherche par nom (insensible à la casse)
+                Q(firstName__icontains=search_query) |  # Recherche par prénom
+                Q(team__name__icontains=search_query) | # Recherche par équipe
+                Q(number__icontains=search_query) | # Recherche par numéro
+                Q(poste__abrev__icontains=search_query) # Recherche par poste
+            )
+        return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('search', '')  # Passer la recherche au template
+        return context
+
+from django.http import JsonResponse
+
+def player_autocomplete(request):
+    search_query = request.GET.get('term', '')
+    results = []
+    if search_query:
+        players = PLayers.objects.filter(
+            Q(name__icontains=search_query) |  # Recherche par nom (insensible à la casse)
+            Q(firstName__icontains=search_query) |  # Recherche par prénom
+            Q(team__name__icontains=search_query) | # Recherche par équipe
+            Q(number__icontains=search_query) | # Recherche par numéro
+            Q(poste__abrev__icontains=search_query) # Recherche par poste
+        )[:10]  # Limitez les résultats pour éviter de surcharger les réponses
+        results = [{'id': player.id, 'label': f"{player.name} {player.firstName}", 'value': player.name} for player in players]
+    return JsonResponse(results, safe=False)
+
+class PlayerCreateView(CreateView):
+    model = PLayers
+    template_name = "players/addplayer.html"
+    form_class = PlayerForm
+    success_url = reverse_lazy("players_index")
+
+    def form_invalid(self, form):
+        # Afficher les erreurs du formulaire dans la console
+        print(form.errors)
+        return super().form_invalid(form)
 
 # Vue pour afficher un joueur en détail
 def player_detail(request, pk):

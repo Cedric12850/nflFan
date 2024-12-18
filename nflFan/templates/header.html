@@ -99,26 +99,53 @@
                         </li>
                         <!-- Team Item -->
                         <li class="nav-item dropdown ">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Team</a>
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Equipes</a>
                             <ul class="dropdown-menu " >
                                 <div class="teamDivisionMenu" id="navbar-divisions"></div>
                             </ul>
                         </li>
 
                         <!-- Player Item -->
+                        
+                        {% if user.is_superuser%}
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Joueurs</a>
+                            <ul class="dropdown-menu " >
+                                <a class="nav-link active " href="{% url 'players_index' %}" aria-current="page">
+                                    Joueurs
+                                </a>
+                                <li class="nav-item"><a class="nav-link active" href="/players/addplayer/">Ajouter de joueur</a></li>
+                            </ul>
+                        </li>
+                        
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link active " href="{% url 'players_index' %}" aria-current="page">
                             Players
                             </a>
                         </li>
-                        {% if user.is_superuser%}
-                        <li class="nav-item"><a class="nav-link active" href="/players/addplayer/">Ajouter de joueur</a></li>
                         {% endif %}
+
+                        <!-- Match Item -->
+                        {% if user.is_superuser %}
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">match</a>
+                            <ul class="dropdown-menu " >
+                                <a class="nav-link active " href="{% url 'playgames_index' %}" aria-current="page">
+                                    Match
+                                </a>
+                                <a class="nav-link active " href="{% url 'playgames_add' %}" aria-current="page">
+                                   Ajouter un match
+                                </a>
+                            </ul>
+                        </li>
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link active " href="{% url 'playgames_index' %}" aria-current="page">
                             Match
                             </a>
                         </li>
+                        {% endif %}
                     </ul>
                     <div class="btn-group">
                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -143,8 +170,8 @@
                             <li class="ms-3">
                                 <a class="nav-link active " href="{% url 'user_detail' pk=user.pk %}" aria-current="page">Mon Profil</a>
                             {% else %}
-                                <a class="nav-link active " href="{% url 'user_create' %}" aria-current="page">sign up</a>
-                                <a href="{% url 'login' %}">Sign in</a>
+                                <!-- <a  href="{% url 'user_create' %}" >sign up</a> -->
+                                <a class="nav-link active ms-3" href="{% url 'login' %}" aria-current="page">Connexion</a>
                             </li>
                             
                         </ul>

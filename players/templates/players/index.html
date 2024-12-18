@@ -11,66 +11,105 @@
         {% endfor %}
     </ul>
     {% endif %}
-        
-        <a href="{% url 'players_index' %}">
-            <button class="btn btn-primary" type="button">Tous les joueurs</button>
-        </a>
-        <!-- Modal pour le formulaire de recherche -->
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Rechercher un joueur</button>
-
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Rechercher un joueur</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <form method="get" class="filter-form">
-                    {{ filter.form.as_p }}
-                    <button class="btn btn-primary" type="submit">Search</button>
-                    <a href="{% url 'players_index' %}">
-                        <button class="btn btn-primary" type="button">Reset</button>
-                    </a>
-                </form>
-            </div>
+  
+    <section>
+        <div>
+            Recherche par nom, équipes, poste ou numéro:
         </div>
-        <!-- Fin de la modal -->
+    <form method="get" action="{% url 'players_index' %}" class="mb-4">
+        <div class="input-group">
+            <input
+                type="text"
+                name="search"
+                id="search"
+                class="form-control"
+                value="{{ search_query }}"
+                placeholder="Rechercher un joueur..."
+                autocomplete="off"
+            >
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </div>
+    </form>
     
+    <ul id="autocomplete-results" class="list-group" style="display: none; position: absolute; z-index: 1000;"></ul>
+    </section>
 
-        <section class="playerView"> 
-            {% for player in filter.qs %}
-            <article class="playerCard" data-link="{% url 'player_detail' player.id %}">
-                <div class="backgroundCardPlayer">
-                    <div class="player_stat_img">
-                        <div class="ranking_position">
-                            <div>
-                                <h6> Pos </h6>
-                                <h3> {{ player.poste.abrev}} </h3>
-                                <img src="{{ player.team.thumbnail.url}}" alt="{{ team.name }}">
-                            </div>
-                            
+    <section class="playerView"> 
+        {% for player in players %}
+        <article class="playerCard" data-link="{% url 'player_detail' player.id %}">
+            <div class="backgroundCardPlayer">
+                <div class="player_stat_img">
+                    <div class="ranking_position">
+                        <div>
+                            <h6> Pos </h6>
+                            <h3> {{ player.poste.abrev}} </h3>
+                            <img src="{{ player.team.thumbnail.url}}" alt="{{ team.name }}">
                         </div>
-                        <img class="img_player" src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
+                        
                     </div>
-                    <div class="crud_player">
-                        {% if player.injury == false %}
-                            <h4>Blessé</h4>
-                        {% else %}
-                            <h4>
-                                <img class="logo_draft" src="/media/draft.png" alt="logo draft">
-                                {{ player.draft.year}}
-                            </h4>
-                        {% endif %}
-                    </div>
-                </div> 
-                <div class="player_card_body teamColorOne-{{ player.team.id }} teamBoxShadowColorOne-{player.team.id}">
-                    <div>
-                        <h5> {{ player.firstName }} </h5>
-                        <h3> {{ player.name}} <span>#{{ player.number }}</span></h3>
-                    </div>
-                    <img src="/media/nfl.svg" alt="logo nfl">
+                    <img class="img_player" src="{{ player.thumbnail.url }}" alt="{{ player.name }}">
                 </div>
-            </article>
-        {% endfor %}  
-        </section>
+                <div class="crud_player">
+                    {% if player.injury == false %}
+                        <h4>Blessé</h4>
+                    {% else %}
+                        <h4>
+                            <img class="logo_draft" src="/media/draft.png" alt="logo draft">
+                            {{ player.draft.year}}
+                        </h4>
+                    {% endif %}
+                </div>
+            </div> 
+            <div class="player_card_body teamColorOne-{{ player.team.id }} teamBoxShadowColorOne-{player.team.id}">
+                <div>
+                    <h5> {{ player.firstName }} </h5>
+                    <h3> {{ player.name}} <span>#{{ player.number }}</span></h3>
+                </div>
+                <img src="/media/nfl.svg" alt="logo nfl">
+            </div>
+        </article>
+    {% endfor %} 
+    </section>
+
+    <section class="pagination-section">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <!-- Lien vers la page précédente (désactivé si aucune page précédente) -->
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                {% endif %}
+    
+                <!-- Numéros de page -->
+                {% for num in paginator.page_range %}
+                    <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endfor %}
+    
+                <!-- Lien vers la page suivante (désactivé si aucune page suivante) -->
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </section>
+        
+        
 </section>  
 {% endblock %}
