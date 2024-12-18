@@ -54,7 +54,6 @@
                             <div class="col-2 col-lg-1 align-self-center">Final</div>
                             <div class="col row">
                                 <div class="row col">
-                                    
                                     <div class="row col justify-content-end">
                                         <div class="col-2 d-none d-lg-block align-self-center">bilan</div>
                                         <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_visitor.town|first_letters:playgame.team_visitor.name }}</h6>
@@ -67,7 +66,7 @@
                                     <div class="col-1 align-self-center">{{ playgame.score_local|default:"-" }}</div>
                                     <div class="row col">
                                         <img class="col-8 col-lg-3" src="{{ playgame.team_local.thumbnail.url}}" alt="{{ playgame.team_local.name }}">
-                                        <h6 class="col-8 col-lg text-center align-self-center">{{ playgame.team_local.town|first_letters:playgame.team_local.name }}</h6> 
+                                        <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_local.town|first_letters:playgame.team_local.name }}</h6> 
                                     </div>
                                     <div class="col-2 d-none d-lg-block align-self-center">bilan</div>
                                 </div>
