@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>
-    {% if user %}
+    {% if user.is_authenticated %}
         Modifier l'utilisateur
     {% else %}
         Créer un utilisateur
@@ -21,69 +21,73 @@
 
 <form method="post">
     {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="row flex-xl-column col-xl-4">
+            <!-- Champ Nom d'utilisateur -->
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                <div class="invalid-feedback">
+                    {{ form.username.errors }}
+                </div>
+            </div>
     
-    <!-- Champ Nom d'utilisateur -->
-    <div>
-        {{ form.username.label_tag }}
-        {{ form.username }}
-        {% if form.username.errors %}
-            <ul class="errorlist">
-                {% for error in form.username.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            <!-- Champ Email -->
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                <div class="invalid-feedback">
+                    {{ form.email.errors }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row flex-xl-column col-xl-4">
+            <!-- Champ Mot de passe -->
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                <div class="invalid-feedback">
+                    {{ form.password1.errors }}
+                </div>
+            </div>
+    
+            <!-- Champ Confirmation du mot de passe -->
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                <div class="invalid-feedback">
+                    {{ form.password2.errors }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="row flex-xl-column col-xl-4">
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.first_name.label_tag}}
+                {{ form.first_name}}
+                <div class="invalid-feedback">
+                    {{ form.first_name.errors }}
+                </div>
+            </div>
+            <div class="form-group mt-2 mb-2 col-md-6 col-xl-10">
+                {{ form.last_name.label_tag}}
+                {{ form.last_name}}
+                <div class="invalid-feedback">
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+        </div>
     </div>
+    
+    
 
-    <!-- Champ Email -->
-    <div>
-        {{ form.email.label_tag }}
-        {{ form.email }}
-        {% if form.email.errors %}
-            <ul class="errorlist">
-                {% for error in form.email.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-
-    <!-- Champ Mot de passe -->
-    <div>
-        {{ form.password1.label_tag }}
-        {{ form.password1 }}
-        {% if form.password1.errors %}
-            <ul class="errorlist">
-                {% for error in form.password1.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-
-    <!-- Champ Confirmation du mot de passe -->
-    <div>
-        {{ form.password2.label_tag }}
-        {{ form.password2 }}
-        {% if form.password2.errors %}
-            <ul class="errorlist">
-                {% for error in form.password2.errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </div>
-
-    <div>
-        {{ form.first_name.label_tag}}
-        {{ form.first_name}}
-    </div>
-    <div>
-        {{ form.last_name.label_tag}}
-        {{ form.last_name}}
-    </div>
-
-    <button type="submit">Enregistrer</button>
+    <button class="btn mt-2 mb-2" type="submit">Enregistrer</button>
 </form>
 
 {% endblock %}

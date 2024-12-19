@@ -1,5 +1,7 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
 from itertools import groupby
 from operator import attrgetter
@@ -53,12 +55,22 @@ class PlaygameIndexVue(ListView):
         
         return context
     
-    
-class PlaygameCreateView(CreateView):
+   
+class PlaygameCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = PlayGame
     template_name = "playgames/addplaygame.html"
     form_class = PlaygamesForm
     success_url = reverse_lazy('playgames_index')
+
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('playgames_index')
 
 def ajax_load_weeks(request):
     season_id = request.GET.get("season")
@@ -71,7 +83,9 @@ class PlaygameDetailView(DetailView):
     template_name = "playgames/playgame_detail.html"
     context_object_name = "post"
 
-class PlaygameUpdateView(UpdateView):
+class PlaygameUpdateView(LoginRequiredMixin,  UserPassesTestMixin, UpdateView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = PlayGame
     template_name = "playgames/edit.html"
     form_class = PlaygamesForm
@@ -83,3 +97,26 @@ class PlaygameUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         context ["submit_text"] = "Modifier"
         return context
+    
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('playgames_index')
+    
+class PlaygameDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
+    model = PlayGame
+    template_name = "playgame/delete.html"
+    success_url = reverse_lazy('playgame_index')
+
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('playgames_index')

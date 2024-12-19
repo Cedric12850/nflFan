@@ -6,6 +6,7 @@ urlpatterns = [
     path('playgames/addplaygame', views.PlaygameCreateView.as_view(), name='playgames_add'),
     path('playgames/<int:pk>', views.PlaygameDetailView.as_view(), name='playgame_detail'),
     path('playgames/<int:pk>/edit', views.PlaygameUpdateView.as_view(), name='playgame_detail_edit'),
+    path('playgames/<int:pk>/delete', views.PlaygameDeleteView.as_view(), name='playgame_detail_delete'),
     path('ajax/load-weeks/', views.ajax_load_weeks, name='ajax_load_weeks'),
     
 ]

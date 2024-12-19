@@ -2,18 +2,58 @@
 
 {% block content %}
 
-    <h1> Update Playgame </h1>
+    <h1> Modifier un match </h1>
 
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        {% if errors %}
-    <ul>
-        {% for field, error_list in errors.items %}
-            <li>{{ field }}: {{ error_list|join:", " }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <div class="group-form">
+            {{ form.team_local.label }}
+            {{ form.team_local }}
+            <div class="invalid-feedback">
+                {{ form.team_local.errors }}
+            </div>
+        </div>
+        <div class="group-form">
+            {{ form.team_visitor.label }}
+            {{ form.team_visitor }}
+            <div class="invalid-feedback">
+                {{ form.team.errors }}
+            </div>
+        </div>
+        <div class="group-form">
+            {{ form.score_local.label }}
+            {{ form.score_local }}
+            <div class="invalid-feedback">
+                {{ form.score_local.errors }}
+            </div>
+        </div>
+        <div class="group-form">
+            {{ form.score_visitor.label }}
+            {{ form.score_visitor }}
+            <div class="invalid-feedback">
+                {{ form.score_visitor..errors }}
+            </div>
+        </div>
+        <div class="group-form">
+            {{ form.season.label }}
+            {{ form.season }}
+            <div class="invalid-feedback">
+                {{ form.season.errors }}
+            </div>
+        </div>
+        <div class="group-form">
+            {{ form.week.label }}
+            {{ form.week }}
+            <div class="invalid-feedback">
+                {{ form.week.errors }}
+            </div>
+        </div>
         <input class="btn btn-primary" type="submit" value="{{ submit_text }}" name="" id="addplayer">
     </form>
     

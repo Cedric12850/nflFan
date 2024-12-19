@@ -17,6 +17,7 @@ class PlayerForm(forms.ModelForm):
             'thumbnail',
             'actif',
             'injury',
+            'draft',
         ]
         widgets = {
             'name': CustomWidgets.text_input_with_placeholder("Nom du joueur"),
@@ -28,6 +29,7 @@ class PlayerForm(forms.ModelForm):
             'thumbnail': CustomWidgets.file_input,
             'actif': CustomWidgets.checkbox_input,
             'injury': CustomWidgets.checkbox_input,
+            'draft' : CustomWidgets.date_input,
         }
         labels = {
             'name': 'Nom :',

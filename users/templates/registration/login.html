@@ -5,15 +5,38 @@
 <section class="container">
 
   <h2>Se connecter</h2>
-
+<artcicle class="container">
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn" type="submit">Se connecter</button>
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+      </div>
+      {% endif %}
+      <div class="row">
+        <div class="form-group row col-md-5 col-xl-4 offset-xl-1 mt-2 mb-2">
+          {{ form.username.label }} :
+          {{ form.username }}
+          <div class="invalid-feedback">
+            {{ form.username.errors }}
+          </div>
+        </div>
+        <div class="form-group row col-md-5 offset-md-1 col-xl-4 mt-2 mb-2">
+          {{ form.password.label }} :
+          {{ form.password }}
+          <div class="invalid-feedback">
+            {{ form.password.errors }}
+          </div>
+        </div>
+      </div>
+      
+    <button class="btn mt-2 mb-2" type="submit">Se connecter</button>
   </form>
 
   <p>Pas encore inscrit ? <a href="{% url 'user_create' %}">Créer un compte</a></p>
 
+</artcicle>
+ 
 
 </section>  
 {% endblock %}

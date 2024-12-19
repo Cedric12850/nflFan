@@ -1,5 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DeleteView, CreateView, DetailView, ListView
 
@@ -55,7 +56,9 @@ class teamDetailView(DetailView):
         return context      # utiliser total_wins et total_losses dans le templates
     
 # Class for update Team
-class UpdateTeamView(UpdateView):
+class UpdateTeamView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = Teams
     template_name = "team/edit.html"
     form_class = TeamForm
@@ -67,6 +70,14 @@ class UpdateTeamView(UpdateView):
         context =  super().get_context_data(**kwargs)
         context["submit_text"] = "Modifier"
         return context
+    
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('teams_index')
     
 # Récupération des équipes par division pour afficher dans la navBar
 def division_team(request):

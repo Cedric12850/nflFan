@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
@@ -30,6 +31,8 @@ class PlayerListView(ListView):
                 Q(number__icontains=search_query) | # Recherche par numéro
                 Q(poste__abrev__icontains=search_query) # Recherche par poste
             )
+        # Appliquer l'ordre (order_by) par poste (abrev de poste, par exemple)
+        queryset = queryset.order_by('number')  # Tri par poste (abrev)
         return queryset
 
     def get_context_data(self, **kwargs):
@@ -53,7 +56,9 @@ def player_autocomplete(request):
         results = [{'id': player.id, 'label': f"{player.name} {player.firstName}", 'value': player.name} for player in players]
     return JsonResponse(results, safe=False)
 
-class PlayerCreateView(CreateView):
+class PlayerCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = PLayers
     template_name = "players/addplayer.html"
     form_class = PlayerForm
@@ -63,6 +68,14 @@ class PlayerCreateView(CreateView):
         # Afficher les erreurs du formulaire dans la console
         print(form.errors)
         return super().form_invalid(form)
+    
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('players_index')
 
 # Vue pour afficher un joueur en détail
 def player_detail(request, pk):
@@ -70,7 +83,9 @@ def player_detail(request, pk):
     return render(request, 'players/player_detail.html', {'player': player})
 
 # Class for update player
-class PlayerUpdateView(UpdateView):
+class PlayerUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = PLayers
     template_name = "players/edit.html"
     form_class = PlayerForm
@@ -82,12 +97,30 @@ class PlayerUpdateView(UpdateView):
         context =  super().get_context_data(**kwargs)
         context["submit_text"] = "Modifier"
         return context
+    
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('players_index')
 
 # Class for delete player
-class PlayerDeleteView(DeleteView):
+class PlayerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    login_url = "/login/"
+    redirect_field_name = "redirect_to"
     model = PLayers
     template_name = "players/delete.html"
     success_url = reverse_lazy('players_index')
+
+    # Vérifie si l'utilisateur est un superadmin
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    # Optionnel : Si l'utilisateur échoue au test
+    def handle_no_permission(self):
+        return redirect('players_index')
 
 
 # Ne fonctionne pas à corriger Pour le moment j'utilise le css dynamique de team

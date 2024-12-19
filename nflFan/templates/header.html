@@ -147,7 +147,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <div class="btn-group">
+                    <div class="btn-group me-3">
                         <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-fill"></i>
                         </button>
@@ -161,15 +161,19 @@
                                 </label>  
                             </li>
                         {% if user.is_authenticated %}
+                            <li class="ms-3">Bienvenue {{ user}}</li>
+                            <li class="ms-3">
+                                <a class="nav-link active " href="{% url 'user_detail' pk=user.pk %}" aria-current="page">Mon Profil</a>
+                            </li>
                             <li>
                                 <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button class="btn " type="submit">Se déconnecter</button>
                                 </form>
                             </li>
-                            <li class="ms-3">
-                                <a class="nav-link active " href="{% url 'user_detail' pk=user.pk %}" aria-current="page">Mon Profil</a>
+                            
                             {% else %}
+                            <li class="ms-3">
                                 <!-- <a  href="{% url 'user_create' %}" >sign up</a> -->
                                 <a class="nav-link active ms-3" href="{% url 'login' %}" aria-current="page">Connexion</a>
                             </li>

@@ -66,9 +66,9 @@
                 
                 <div class="col-xl-6">
                     <div class="row flex-xl-column">
-                        <div class="row col-md-8 flex-xl-column">
+                        <div class="row col-md-6 flex-xl-column">
                             <!-- Poste form -->
-                            <div class="form-group mt-2 mb-2 col-8 col-md-10">
+                            <div class="form-group mt-2 mb-2 col-8 col-md-9">
                                 {{form.poste.label}}
                                 {{ form.poste}}
                                 <div class="invalid-feedback">
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <!-- N° form -->    
-                            <div class="form-group mt-2 mb-2 col-3 col-md-2 col-xl-4">
+                            <div class="form-group mt-2 mb-2 col-3 col-md-3 col-xl-4">
                                 {{form.number.label}}&deg :
                                 {{ form.number}}
                                 <div class="invalid-feedback">
@@ -84,9 +84,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row col-md-4 ">
+                        <div class="row col-md-6 ">
                         <!-- actif form -->
-                            <div class="form-group mt-2 mb-2 col col-md-4">
+                            <div class="form-group mt-2 mb-2 col col-md-3">
                                 <div>{{ form.actif.label }}</div>
                                 <div class="d-flex justify-content-center">{{ form.actif }}</div>
                                 <div class="invalid-feedback">
@@ -94,11 +94,19 @@
                                 </div>
                             </div>
                         <!-- Injury form -->
-                            <div class="form-group mt-2 mb-2 col col-md-4">
+                            <div class="form-group mt-2 mb-2 col col-md-3">
                                 <div>{{ form.injury.label }}</div>
                                 <div class="d-flex justify-content-center">{{ form.injury }}</div>
                                 <div class="invalid-feedback">
                                     {{ form.injury.errors }}
+                                </div>
+                            </div>
+                            <!-- Draft form -->
+                            <div class="form-group mt-2 mb-2 col col-md-6">
+                                <div>{{ form.draft.label }}</div>
+                                <div class="d-flex justify-content-center">{{ form.draft }}</div>
+                                <div class="invalid-feedback">
+                                    {{ form.draft.errors }}
                                 </div>
                             </div>
                         </div>
