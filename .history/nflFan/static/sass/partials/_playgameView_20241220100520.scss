@@ -1,0 +1,10 @@
+/* Style des options pour ajouter un peu d'espace entre l'image et le texte */
+select option {
+    padding-left: 40px;  /* Ajoute un peu de padding pour que l'image ne chevauche pas le texte */
+}
+
+select option[data-image] {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 30px 30px; /* Ajustez la taille de l'image */
+}

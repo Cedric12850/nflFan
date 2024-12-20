@@ -1,0 +1,23 @@
+<footer>
+    <section class="">
+
+        <article class="flex space_around">
+            {% for conference in conferences %}
+                <div class="flex dir_column">
+                    {{ conference.name}}
+                    <div class="flew">
+                        {% for division in conference.divisions.all %}
+                        {% for team in division.teams.all %}
+                        <div class="">
+                            <img class="team_logo_footer" src="{{ team.thumbnail.url }}" alt=" logo {{ team.name}}">
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+
+    </section>
+    <a class="nav-link " href="/admin" target="_blank">Admin</a>
+</footer>

@@ -1,0 +1,28 @@
+/* Assurez-vous que le champ prend la largeur complète */
+.select2-container--default .select2-selection--single {
+    height: calc(2.4rem + 2px); /* Ajuster pour correspondre à la hauteur Bootstrap */
+    display: flex;
+    align-items: center; /* Centrer le contenu verticalement */
+    border-radius: 0.375rem; /* Coin arrondi Bootstrap */
+    border: 1px solid #ced4da; /* Couleur de bordure Bootstrap */
+}
+
+/* Corrige les marges des images */
+.select2-container--default .select2-selection--single img {
+    margin-right: 10px;
+    max-height: 30px; /* Taille maximale pour s'ajuster au champ */
+    border-radius: 5px; /* Ajouter un effet arrondi si nécessaire */
+}
+
+/* Style pour le dropdown */
+.select2-container--default .select2-results__option {
+    display: flex;
+    align-items: center; /* Aligner le texte et les images */
+    padding: 0.5rem; /* Espacement pour plus de lisibilité */
+}
+
+.select2-container--default .select2-results__option img {
+    margin-right: 10px;
+    max-height: 30px;
+    border-radius: 5px;
+}

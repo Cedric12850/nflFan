@@ -1,0 +1,17 @@
+<select name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+    {% for group, options, index in widget.optgroups %}
+        {% if group %}
+            <optgroup label="{{ group }}">
+        {% endif %}
+        {% for option in options %}
+            <option value="{{ option.value }}" 
+                    {% if option.attrs %}{% for key, value in option.attrs.items %} {{ key }}="{{ value }}"{% endfor %}{% endif %}>
+                <img src="{{ option.attrs['data-image'] }}" alt="{{ option.label }}" style="width: 30px; height: 30px; margin-right: 10px;">
+                {{ option.label }}
+            </option>
+        {% endfor %}
+        {% if group %}
+            </optgroup>
+        {% endif %}
+    {% endfor %}
+</select>

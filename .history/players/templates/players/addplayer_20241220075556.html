@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container">
+
+    <h1> Ajouter un joueur </h1>
+    <article class="container">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- Affichage des erreurs générales du formulaire -->
+            {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="row">
+                        <!-- team form -->
+                        <div class="form-group mt-2 mb-2 col-12">
+                            {{ form.team.label }}
+                            {{ form.team }}
+                            <div class="invalid-feedback">
+                                {{ form.team.errors }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row flex-xl-column">
+                        <!-- PLayer Name form -->
+                        <div class="form-group mt-2 mb-2 col-lg">
+                            {{ form.name.label}}
+                            {{ form.name }}
+                            <div class="invalid-feedback">
+                                {{ form.name.errors }}
+                            </div>
+                        </div>
+                        <!-- Player FirstName form -->
+                        <div class="form-group mt-2 mb-2 col-lg">
+                            {{ form.firstName.label}}
+                            {{ form.firstName }}
+                            <div class="invalid-feedback">
+                                {{ form.firstName.errors }}
+                            </div>
+                        </div>
+                        <div class="form-group mt-2 mb-2 col-lg row">
+                            <div class="col col-md-3 col-lg col-xl-4">{{ form.age.label }}</div>
+                            <div class="col col-md-3 col-lg col-xl-3">{{ form.age}}</div>
+                            <div class="invalid-feedback">
+                                {{ form.age.errors }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnail form -->
+                    <div class="form-group mt-2 mb-2">
+                        {{ form.thumbnail.label }}
+                        {{ form.thumbnail }}
+                        <div class="invalid-feedback">
+                            {{ form.firstName.errors }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-6">
+                    <div class="row flex-xl-column">
+                        <div class="row col-md-6 flex-xl-column">
+                            <!-- Poste form -->
+                            <div class="form-group mt-2 mb-2 col-8 col-md-9">
+                                {{form.poste.label}}
+                                {{ form.poste}}
+                                <div class="invalid-feedback">
+                                    {{ form.poste.errors }}
+                                </div>
+                            </div>
+                            <!-- N° form -->    
+                            <div class="form-group mt-2 mb-2 col-3 col-md-3 col-xl-4">
+                                {{form.number.label}}&deg :
+                                {{ form.number}}
+                                <div class="invalid-feedback">
+                                    {{ form.number.errors }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-md-6 ">
+                        <!-- actif form -->
+                            <div class="form-group mt-2 mb-2 col col-md-3">
+                                <div>{{ form.actif.label }}</div>
+                                <div class="d-flex justify-content-center">{{ form.actif }}</div>
+                                <div class="invalid-feedback">
+                                    {{ form.actif.errors }}
+                                </div>
+                            </div>
+                        <!-- Injury form -->
+                            <div class="form-group mt-2 mb-2 col col-md-3">
+                                <div>{{ form.injury.label }}</div>
+                                <div class="d-flex justify-content-center">{{ form.injury }}</div>
+                                <div class="invalid-feedback">
+                                    {{ form.injury.errors }}
+                                </div>
+                            </div>
+                            <!-- Draft form -->
+                            <div class="form-group mt-2 mb-2 col col-md-6">
+                                <div>{{ form.draft.label }}</div>
+                                <div class="d-flex justify-content-center">{{ form.draft }}</div>
+                                <div class="invalid-feedback">
+                                    {{ form.draft.errors }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-2">
+                <input class="btn" type="submit" value="Ajouter" name="" id="addplayer">
+            </div>
+        </form>
+    </article>
+
+</section>    
+{% endblock %}

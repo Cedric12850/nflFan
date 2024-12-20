@@ -1,0 +1,13 @@
+<footer>
+    <section class="container">
+
+        <article class="row">
+            {% for conference in conferences %}
+            <div class="col">
+                {{ conference.short_name}}
+            </div>
+        </article>
+
+    </section>
+    <a class="nav-link " href="/admin" target="_blank">Admin</a>
+</footer>

@@ -1,0 +1,44 @@
+/* Supprimer les styles de Select2 qui causent des conflits */
+.select2-container--default .select2-selection--single {
+    height: auto !important; /* Désactiver la hauteur par défaut de Select2 */
+    border: 1px solid #ced4da; /* Appliquer la bordure de Bootstrap */
+    border-radius: 0.375rem !important; /* Appliquer le rayon de bordure de Bootstrap */
+    display: flex;
+    align-items: center;
+    padding-left: 10px; /* Assurez-vous qu'il y a un peu d'espace avant le texte */
+}
+
+/* Ajuster la taille des images et la distance entre le texte et l'image */
+.select2-container--default .select2-selection--single img {
+    width: 30px; /* Taille fixe */
+    height: 30px;
+    margin-right: 10px; /* Espacement entre l'image et le texte */
+    object-fit: contain; /* Assurez-vous que l'image ne déborde pas */
+}
+
+/* Ajuster le dropdown (liste des options) */
+.select2-container--default .select2-results__option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.select2-container--default .select2-results__option img {
+    margin-right: 10px;
+    max-height: 30px;
+    border-radius: 5px;
+}
+
+/* Appliquer un style commun pour que les champs aient la même taille */
+.select2-container--default .select2-selection--single {
+    font-size: 1rem; /* Taille de police standard Bootstrap */
+    height: calc(2.25rem + 2px); /* Hauteur correspondante à celle des autres champs Bootstrap */
+    line-height: 2.25rem; /* Alignement vertical du texte */
+}
+
+/* Enlever les bordures et arrondir les coins des options du dropdown */
+.select2-container--default .select2-results__option {
+    border-radius: 0.375rem; /* Coin arrondi sur les options */
+    background-color: #fff; /* Fond blanc pour les options */
+    font-size: 0.875rem; /* Taille de police légèrement plus petite */
+}

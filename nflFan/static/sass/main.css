@@ -82,7 +82,7 @@ html {
   text-transform: capitalize;
 }
 
-.container, body {
+.bg-color238, body {
   background-color: rgb(238, 238, 238);
 }
 
@@ -109,12 +109,24 @@ a {
   display: flex;
 }
 
-.row {
-  flex-direction: row;
-}
-
 .flex-end {
   justify-content: flex-end;
+}
+
+.space_around {
+  justify-content: space-around;
+}
+
+.f-vwrap {
+  flex-wrap: wrap;
+}
+
+.f-nowrap {
+  flex-wrap: nowrap;
+}
+
+.dir_column {
+  flex-direction: column;
 }
 
 header {
@@ -272,6 +284,14 @@ footer {
   padding: 1rem 3rem 1rem 2rem;
   background-color: rgba(1, 1, 31, 0.87);
   color: white;
+}
+
+.team_logo_footer {
+  width: 40%;
+}
+
+.team_logo_footer > img {
+  width: inherit;
 }
 
 /* ----------------------- Home Page -------------------------------- */

@@ -1,0 +1,17 @@
+<footer>
+    <section class="container">
+
+        <article class="row">
+            {% for conference in conferences %}
+                <div class="col">
+                    {{ conference.name}}
+                    <div>
+                        {% for team in  %}
+                    </div>
+                </div>
+            {% endfor %}
+        </article>
+
+    </section>
+    <a class="nav-link " href="/admin" target="_blank">Admin</a>
+</footer>

@@ -1,0 +1,20 @@
+@use "partials/buttons";
+@use "partials/img";
+@use "partials/variables" as *;
+@use "partials/mixins";
+@use "partials/header";
+@use "partials/footer";
+@use "partials/homeView";
+@use "partials/playerView";
+@use "partials/teamView";
+
+
+@use "partials/responsive425px";
+@use "partials/responsive768px";
+@use "partials/responsive992px";
+@use "partials/responsive1200px";
+@use "partials/responsive1440px";
+
+
+
+

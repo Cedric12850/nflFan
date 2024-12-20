@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+
+<section>
+    <article>
+        <h1>NFl Schedule</h1>
+        <article class="row pb-3">
+            <div class="col">
+                <form method="get">
+                    <label for="season-select"></label>
+                    <select name="season_id" id="season-select" onchange="this.form.submit()">
+                        <option value="season"> -- Selectionner une saison --</option>
+                        {% for season in seasons %}
+                            <option value="{{ season.id }}" {% if season.id == selected_season_id %}selected{% endif %}>
+                                {{ season.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                {% if weeks %}
+                <form method="get">
+                    <!-- Garder la saison sélectionnée pour ne pas la perdre au prochain submit -->
+                    <input type="hidden" name="season_id" value="{{ selected_season_id }}">
+                    <label for="week-select"></label>
+                    <select name="week_id" id="week-select" onchange="this.form.submit()">
+                        <option value="weeks"> -- Selectionner une semaine --</option>
+                        {% for week in weeks %}
+                            <option value="{{ week.id }}" {% if week.id == selected_week_id %}selected{% endif %}>
+                                Semaine {{ week.week_number }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+                {% endif %}
+            </div>
+        </article>
+</article>
+    <article>
+        <div id="playgames">
+            {% if grouped_playgames %}
+            <div>
+                {% for date, playgames in grouped_playgames.items %}
+            <section class="">
+                <div>
+                    <div><h4> {{ date }} </h4></div>
+                </div>
+                <div>
+                    {% for playgame in playgames %}
+                    <div class="row bg-light m-1 mb-2 shadow-sm" >
+                        <a href="" class="row col">
+                            <div class="col-2 col-lg-1 align-self-center">Final</div>
+                            <div class="col row">
+                                <div class="row col">
+                                    <div class="row col justify-content-end">
+                                        <div class="col-2 d-none d-lg-block align-self-center">bilan</div>
+                                        <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_visitor.town|first_letters:playgame.team_visitor.name }}</h6>
+                                        <img class="col-8 col-lg-3 order-first order-lg-last " src="{{ playgame.team_visitor.thumbnail.url}}" alt="{{ playgame.team_visitor.name }}">
+                                    </div>
+                                    <div class="col-1 align-self-center">{{ playgame.score_visitor|default:"-" }}</div>
+                                </div>
+                                <div class="col-1 align-self-center text-center "><span>@</span></div>
+                                <div class="row col">
+                                    <div class="col-1 align-self-center">{{ playgame.score_local|default:"-" }}</div>
+                                    <div class="row col">
+                                        <img class="col-8 col-lg-3" src="{{ playgame.team_local.thumbnail.url}}" alt="{{ playgame.team_local.name }}">
+                                        <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_local.town|first_letters:playgame.team_local.name }}</h6> 
+                                    </div>
+                                    <div class="col-2 d-none d-lg-block align-self-center">bilan</div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="d-none d-lg-block col align-self-center col col-lg-1">
+                            <a href="https://www.dazn.com/en-FR/l/nfl-game-pass">replay</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+
+            </section>
+            
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </article>
+
+</section>
+{% endblock %}

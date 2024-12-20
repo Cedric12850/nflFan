@@ -1,0 +1,51 @@
+html {
+    box-sizing: border-box;
+    font-family: "roboto";
+    -webkit-font-smoothing: antialiased;
+    
+} 
+*, *:after, *:before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+*::first-letter {
+    text-transform: capitalize;
+}
+.container, body{
+    background-color: rgb(238, 238, 238);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+.bold-800 {
+    font-weight: 800;
+}
+.bg-grey{
+    background-color: rgb(238, 238, 238);
+}
+.align-i{
+    align-items: stretch; /* Aligne les éléments en hauteur */
+    overflow: hidden; /* Empêche le débordement horizontal du conteneur global */
+    width: 100%;
+}
+.flex{
+    display: flex;
+}
+.row {
+    flex-direction: row;
+}
+.flex-end{
+    justify-content: flex-end;
+}
+.space_around{
+    justify-content: space-around;
+}
+.f-nowrap{
+    flex-wrap: nowrap;
+}
+.dir_column{
+    flex-direction: column;
+}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container">
+    <h1> Ajouter un match </h1>
+
+    <section class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <div class="row col-lg-4 flex-lg-column">
+                    <div class="group-form col-md-6 col-lg-12 mt-2 mb-2">
+                        {{ form.season.label }}
+                        {{ form.season }}
+                        <div class="invalid-feedback">
+                            {{ form.season.errors }}
+                        </div>
+                    </div>
+                    <div class="group-form col-md-3 col-lg-12 mt-2 mb-2">
+                        {{ form.week.label }}
+                        {{ form.week }}
+                        <div class="invalid-feedback">
+                            {{ form.week.errors }}
+                        </div>
+                    </div>
+                    <div class="group-form col-md-3 col-lg-12 mt-2 mb-2">
+                        {{ form.played_at.label }}
+                        {{ form.played_at }}
+                        <div class="invalid-feedback">
+                            {{ form.played_at.errors }}
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row col-lg-8">
+                    <div class="col-md-6 col-lg-5 offset-lg-1">
+                        <div class="group-form mt-2 mb-2">
+                            <select class="form-select" id="id_team_local" name="team_local">
+                                <!-- Les options seront insérées dynamiquement ici -->
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ form.team_local.errors }}
+                            </div>
+                        </div>
+                        <div class="group-form mt-2 mb-2">
+                            {{ form.team_visitor.label }}
+                            {{ form.team_visitor }}
+                            <div class="invalid-feedback">
+                                {{ form.team.errors }}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-lg-3 offset-lg-1">
+                        <div class="group-form mt-2 mb-2">
+                            {{ form.score_local.label }}
+                            {{ form.score_local }}
+                            <div class="invalid-feedback">
+                                {{ form.score_local.errors }}
+                            </div>
+                        </div>
+                        <div class="group-form mt-2 mb-2">
+                            {{ form.score_visitor.label }}
+                            {{ form.score_visitor }}
+                            <div class="invalid-feedback">
+                                {{ form.score_visitor..errors }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <input class="btn btn-primary mt-2 mb-2" type="submit" value="Ajouter" name="" id="addplaygame">
+        </form>
+    </section>
+</section>    
+{% endblock %}

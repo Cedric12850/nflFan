@@ -1,0 +1,21 @@
+<footer>
+    <section class="container">
+
+        <article class="row">
+            {% for conference in conferences %}
+                <div class="col">
+                    {{ conference.name}}
+                    {% for division in conference.divisions.all %}
+                    {% for team in division.teams.all %}
+                    <div>
+                        <img src="{{ team.thumbnail.url }}" alt="{{ team.t}}">
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </article>
+
+    </section>
+    <a class="nav-link " href="/admin" target="_blank">Admin</a>
+</footer>
