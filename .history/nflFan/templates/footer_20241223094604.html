@@ -1,0 +1,24 @@
+<footer>
+    <section class="container">
+
+        <article>
+            <div class="flex f-nowrap space">
+                {% for conference in conferences %}
+                <div class="mb-3">
+                    <h6>{{ conference.shortName}}</h6>
+                    <div class="flex f-wrap">
+                        {% for division in conference.divisions.all %}
+                        {% for team in division.teams.all %}
+                            <img class="team_logo_footer" src="{{ team.thumbnail.url }}" alt=" logo {{ team.name}}">
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+         
+        </article>
+        <a class="nav-link " href="/admin" target="_blank">Admin</a>
+    </section>
+    
+</footer>
