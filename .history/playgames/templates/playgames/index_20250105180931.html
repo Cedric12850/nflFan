@@ -59,11 +59,11 @@
                                         <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_visitor.town|first_letters:playgame.team_visitor.name }}</h6>
                                         <img class="col-8 col-lg-3 order-first order-lg-last " src="{{ playgame.team_visitor.thumbnail.url}}" alt="{{ playgame.team_visitor.name }}">
                                     </div>
-                                    <div class="col-1 align-self-center">{{ playgame.score_visitor }}</div>
+                                    <div class="col-1 align-self-center">{{ playgame.score_visitor|default:"*" }}</div>
                                 </div>
                                 <div class="col-1 align-self-center text-center "><span>@</span></div>
                                 <div class="row col">
-                                    <div class="col-1 align-self-center">{{ playgame.score_local }}</div>
+                                    <div class="col-1 align-self-center">{{ playgame.score_local|default:"-" }}</div>
                                     <div class="row col">
                                         <img class="col-8 col-lg-3" src="{{ playgame.team_local.thumbnail.url}}" alt="{{ playgame.team_local.name }}">
                                         <h6 class="col-8 col-lg-4 text-center align-self-center">{{ playgame.team_local.town|first_letters:playgame.team_local.name }}</h6> 

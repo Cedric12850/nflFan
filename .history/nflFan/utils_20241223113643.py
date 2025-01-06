@@ -14,7 +14,7 @@ def get_playgame_data():
     presentday = datetime.now()
     days_since_wednesday = (presentday.weekday() - 2) % 7  # Le mercredi est le jour 2
     start_of_week = presentday - timedelta(days=days_since_wednesday)
-    end_of_week = start_of_week + timedelta(days=7)     #days=6 correspond à mercredi
+    end_of_week = start_of_week + timedelta(days=5)
 
     # Conversion en `date` pour comparaison avec `week.start_date`
     start_of_week = start_of_week.date()
